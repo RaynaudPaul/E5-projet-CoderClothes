@@ -5,13 +5,17 @@
     <title>{% block title %}welcome!{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
     {% block stylesheets %}{% endblock %}
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+
 
     {% block javascripts %}{% endblock %}
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
 </head>
 <body>
+{% include './footandhead/header.html.twig' %}
 {% block body %}{% endblock %}
+{% include './footandhead/footer.html.twig' %}
 </body>
 </html>

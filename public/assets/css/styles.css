@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header{
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px 3%;
+    background: transparent;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    border-bottom: 2px solid #000;
+
+}
+
+.logo{
+    font-size: 26px;
+    color: black;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.navbar a{
+    font-size: 18px;
+    display: inline-block;
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 50px;
+}
