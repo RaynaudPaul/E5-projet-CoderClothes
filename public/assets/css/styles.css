@@ -9,27 +9,48 @@
     top: 0;
     left: 0;
     width: 100%;
-    padding: 40px 3%;
+    padding: 30px 3%;
     background: transparent;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
+    background: #fffa;
     border-bottom: 2px solid #000;
 
 }
 
 .logo{
+    display: flex;
     font-size: 26px;
     color: black;
     text-decoration: none;
     font-weight: 700;
+    font-family: Consolas;
+}
+
+.logo pre{
+    color: #007bff;
 }
 
 .navbar a{
-    font-size: 18px;
+    font-size: 20px;
     display: inline-block;
     color: black;
     text-decoration: none;
     font-weight: 500;
     margin-left: 50px;
+    border-bottom: 3px solid #0000;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+
+    transition: all .3s;
+}
+
+.navbar a:hover{
+    border-bottom: 2px solid #000;
+}
+
+.navbar a i{
+    transform: scale(1.5);
 }
