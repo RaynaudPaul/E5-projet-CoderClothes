@@ -10,7 +10,7 @@
     left: 0;
     width: 100%;
     padding: 30px 3%;
-    background: transparent;
+    //background: transparent;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
@@ -25,14 +25,14 @@
     color: black;
     text-decoration: none;
     font-weight: 700;
-    font-family: Consolas;
+    font-family: Consolas, serif;
 }
 
 .logo pre{
     color: #007bff;
 }
 
-.navbar a{
+.navbar > a,.navbar .account{
     font-size: 20px;
     display: inline-block;
     color: black;
@@ -53,4 +53,49 @@
 
 .navbar a i{
     transform: scale(1.5);
+}
+
+.account{
+    position: relative;
+}
+
+.account a{
+    text-decoration: none;
+    color: #000;
+}
+
+.plusaccount{
+    position: absolute;
+    z-index: -1;
+    top: 40px;
+    right: 0;
+
+    background: #fff;
+    padding: 5px;
+
+    border: 1px solid #000;
+    border-radius: 10px;
+
+    width: 170px;
+    height: max-content;
+
+    transform: translate(50px,-100px);
+    opacity: 0;
+
+    transition: all .3s;
+}
+
+.account:hover .plusaccount{
+    z-index: 2;
+    display: block;
+    opacity: 1;
+    transform: translate(50px,0);
+}
+
+.plusaccount a,.plusaccount span{
+    display: block;
+    text-align: center;
+    padding: 10px;
+    width: max-content;
+    margin: auto;
 }

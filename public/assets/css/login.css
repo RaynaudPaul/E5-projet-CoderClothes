@@ -33,6 +33,19 @@ form::after{
     transform: rotate(40deg) translate(-25px,-10px);
 }
 
+form .info{
+    text-align: center;
+}
+
+form .alert{
+    background: rgba(248, 46, 46, 0.88);
+    color: #fff;
+    padding: 20px;
+    padding-left: 30px;
+    padding-right: ;: 30px;
+    border-radius: 20px;
+}
+
 h1 {
     text-align: center;
     margin-bottom: 20px;

@@ -2,9 +2,23 @@
 <header class="header">
     <a href="/" class="logo"><pre>&lt;Coder/> </pre>Clothes</a>
     <nav class="navbar">
-        <a href="#">À propos de la marque</a>
+        <a href="{{ path('app_about') }}">À propos de la marque</a>
         <a href="#">Contact</a>
         <a href="#"><i class='bx bx-shopping-bag'></i></a>
-        <a href="/login"><i class='bx bx-user-circle'></i></a>
+
+        <div class="account">
+            <a href="{{ path('app_login') }}">
+                <i class='bx bx-user-circle'></i>
+            </a>
+
+            {% if app.user %}
+                    <div class="plusaccount">
+                        <span>{{ app.user.lastname }} {{ app.user.firstname }}</span>
+                        <a href="#">...</a>
+                        <a href="#">Mon compte</a>
+                        <a href="{{ path('app_logout') }}">Me déconnecter</a>
+                    </div>
+            {% endif %}
+        </div>
     </nav>
 </header>

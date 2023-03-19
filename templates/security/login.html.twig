@@ -10,12 +10,12 @@
 
     <form method="post">
         {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            <div class="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
 
         {% if app.user %}
-            <div class="mb-3">
-                Vous êtes connecté(e) comme {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Me déconnecter</a>
+            <div class="info">
+                Vous êtes connecté(e) avec {{ app.user.userIdentifier }}, <br/><a href="{{ path('app_logout') }}">Me déconnecter</a>
             </div>
         {% endif %}
 
