@@ -1,27 +1,26 @@
 .About .logo,.About .Tequipe{
     display: block;
+    width: -webkit-max-content;
+    width: -moz-max-content;
     width: max-content;
-    margin: auto;
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin: 150px auto;
     font-size: 45px;
     color: black;
     text-align: center;
     font-family: Consolas;
 
     padding-bottom: 10px;
-    //border-bottom: 3px solid #007bff;
 }
 
 .About .logo span:first-child{
     display: block;
     padding-bottom: 5px;
     margin-bottom: 25px;
-
-    //border-bottom: 2px solid #000;
 }
 
 .About .logo .textlogo{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 
@@ -31,10 +30,8 @@
 }
 
 .About .blabla,.About .equipe{
-    width: 800px;
-    margin: auto;
-
-    margin-bottom: 50px;
+    width: 950px;
+    margin: auto auto 50px;
 
     font-size: 25px;
 
@@ -45,11 +42,140 @@
     border-radius: 50px;
 }
 
+.About .blabla{
+    font-size: 27px;
+}
+
 .About .blabla pre{
+    width: -webkit-max-content;
+    width: -moz-max-content;
     width: max-content;
     display: contents;
     color: #007bff;
 
-    font-size: 24px;
+    font-size: 27px;
 }
 
+.About .equipe{
+    //width: 900px;
+}
+
+.About .equipe .aEquipe{
+    position: relative;
+    display: inline-block;
+
+    width: 320px;
+
+    border-radius: 20px;
+    margin: 30px;
+    padding: 15px;
+
+    background: #fff;
+
+    -webkit-box-shadow: 0 0 10px #0004;
+
+    box-shadow: 0 0 10px #0004;
+
+    -webkit-transition: all .3s;
+
+    -o-transition: all .3s;
+
+    transition: all .3s;
+
+}
+
+.About .equipe .aEquipe:hover{
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.About .equipe .aEquipe img{
+    width: 200px;
+    padding: 10px;
+    border-radius: 50%;
+    border: 2px solid #007bff;
+    margin: 10px;
+
+    background: #fff;
+}
+
+
+.About .equipe .aEquipe h2{
+    font-size: 23px;
+    margin: 5px;
+}
+
+.About .equipe .aEquipe p{
+    margin-top: 15px;
+    font-family: Consolas;
+}
+
+.About .equipe .aEquipe .sociaux{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 100px;
+
+    background: #fff;
+
+    -webkit-transition: all .3s;
+
+    -o-transition: all .3s;
+
+    transition: all .3s;
+}
+
+.About .equipe .aEquipe .sociaux a{
+    height: 70px;
+    width: 70px;
+    margin: auto;
+
+    border: 2px solid #007bff;
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    -webkit-transition: all .3s;
+
+    -o-transition: all .3s;
+
+    transition: all .3s;
+}
+
+.About .equipe .aEquipe .sociaux a:hover{
+    background: #007bff;
+}
+
+
+
+.About .equipe .aEquipe .sociaux a img{
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+    border: none;
+    margin: 0;
+    padding: 15px;
+
+    background: #fff;
+
+    -webkit-filter: invert(0%);
+
+    filter: invert(0%);
+
+
+    -webkit-transition: all .3s;
+
+
+    -o-transition: all .3s;
+
+
+    transition: all .3s;
+}
+
+.About .equipe .aEquipe .sociaux a:hover img {
+    background: #ff8300;
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+
+}
