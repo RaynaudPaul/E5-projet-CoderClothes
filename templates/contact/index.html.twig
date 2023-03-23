@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/contact.css') }}">{% endblock %}
+
+{% block body %}
+
+<div class="contact">
+    <h1 class="Titre"><span>Contact :</span>
+        <span class="textlogo"><pre>&lt;Coder/> </pre>Clothes</span>
+    </h1>
+
+
+    <section class="informations">
+        <p>
+        <pre><h1 class="padding">Informations :</h1></pre>
+        <span><pre>Numéro de téléphone : </pre>05.55.XX.XX.XX</span>
+        <span><pre>Adresse de l'entreprise : </pre>39 Rue François Perrin, 87000 Limoges</span>
+        <span><pre>Date de création : </pre>Depuis le 9 Mars 2023</span>
+        </p>
+    </section>
+</div>
+
+
+{% endblock %}
