@@ -1,0 +1,58 @@
+.horizontal-menu {
+    display: flex;
+    align-items: center;
+    position: relative;
+    weight: 200px;
+    scroll-behavior: smooth;
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 85px;
+    font-size: 15px;
+}
+
+h1{
+    font-size: 15px;
+    margin-top: -15px;
+    margin-bottom: 8px;
+}
+
+li:last-of-type {
+    margin-right: 0;
+}
+
+img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15%;
+    margin-bottom: 20%;
+}
+
+
+
+.ajouter-panier {
+    background-color: #007bff; /* Couleur de fond du bouton */
+    color: #000000; /* Couleur du texte */
+    border: none; /* Supprimer la bordure */
+    padding: 7px 14px; /* Ajouter un peu d'espace autour du texte */
+    border-radius: 50px; /* Ajouter des bords arrondis */
+    font-size: 15px; /* Taille de police */
+    cursor: pointer; /* Changer le curseur en forme de main au survol */
+    transition: background-color 0.3s ease; /* Ajouter une transition fluide lors du survol */
+    opacity: 80%;
+}
+
+.ajouter-panier:hover {
+    background-color: #0036d9; /* Changer la couleur de fond au survol */
+}
