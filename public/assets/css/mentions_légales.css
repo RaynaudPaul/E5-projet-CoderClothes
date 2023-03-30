@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.mentions{
+    font-family: Consolas;
+}
+
+.mentions .titre-mentions{
+    font-size: 45px;
+    margin-top: 67px;
+    margin-left: 45px;
+    color: #007bff;
+}
+
+.mentions .md{
+    font-size: 45px;
+    margin-left: 67px;
+    color: #007bff;
+}
+.mentions .mw{
+    font-size: 45px;
+    margin-left: 67px;
+    color: #007bff;
+}
