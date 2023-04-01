@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mentions légales{% endblock %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/mentions_légales.css') }}">{% endblock %}
+
+{% block body %}
+    <section class="mentions">
+        <h1 class="titre-mentions">Mentions légales de l'entreprise</h1>
+
+        <ul>
+            <li>Nom de l'entreprise : Coder Clothes</li>
+            <li>Forme juridique : [à préciser selon votre statut juridique]</li>
+            <li>Adresse du siège social : [à préciser]</li>
+            <li>Numéro de téléphone : [à préciser]</li>
+            <li>Adresse e-mail : [à préciser]</li>
+            <li>Numéro d'identification de l'entreprise : [à préciser]</li>
+        </ul>
+
+        <h2 class="md">2. Directeur de la publication</h2>
+        <ul>
+            <li>Nom et prénom du directeur de la publication : [à préciser]</li>
+            <li>Adresse e-mail du directeur de la publication : [à préciser]</li>
+        </ul>
+
+        <h2 class="mw">3. Hébergeur du site web</h2>
+        <ul>
+            <li>Nom de l'hébergeur : [à préciser]</li>
+            <li>Adresse de l'hébergeur : [à préciser]</li>
+            <li>Numéro de téléphone de l'hébergeur : [à préciser]</li>
+        </ul>
+
+        <h2>4. Propriété intellectuelle</h2>
+        <ul>
+            <li>Tous les contenus présents sur le site (textes, images, vidéos, etc.) sont la propriété exclusive de Coder Clothes ou de ses partenaires.</li>
+            <li>Toute reproduction, même partielle, des contenus est strictement interdite sans autorisation préalable.</li>
+        </ul>
+        <h2>5. Protection des données personnelles</h2>
+        <ul>
+            <li>Coder Clothes s'engage à respecter la confidentialité des données personnelles de ses clients.</li>
+            <li>Les données collectées sont utilisées uniquement dans le cadre de la commande et ne sont pas communiquées à des tiers.</li>
+            <li>Les clients disposent d'un droit d'accès, de modification et de suppression de leurs données personnelles.</li>
+        </ul>
+
+        <h2>6. Cookies</h2>
+        <ul>
+            <li>Coder Clothes utilise des cookies sur son site web pour améliorer l'expérience utilisateur.</li>
+            <li>Les cookies peuvent être désactivés à tout moment depuis les paramètres du navigateur.</li>
+        </ul>
+    </section>
+{% endblock %}
