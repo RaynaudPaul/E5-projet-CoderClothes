@@ -146,6 +146,45 @@
     margin: auto;
 }
 
+.center {
+    position: relative;
+    height: calc(100vh - 97px);
+}
+
+.center > * {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    margin: auto;
+
+}
+
+.error{
+    position: relative;
+    height: max-content;
+    width: max-content;
+
+
+    transform: translate(0,-50%);
+}
+
+.error h1{
+    font-size: 45px;
+
+    display: flex;
+    font-weight: 700;
+    font-family: Consolas, serif;
+}
+
+.error h1 pre{
+    color: #007bff;
+}
+
+.error p{
+    font-size: 24px;
+    text-align: center;
+}
+
 
 footer{
     display: flex;

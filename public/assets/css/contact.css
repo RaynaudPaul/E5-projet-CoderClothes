@@ -60,3 +60,8 @@
     margin-bottom: 45px;
     text-align: center;
 }
+
+section.map{
+    border-radius: 20px;
+    overflow: hidden;
+}
