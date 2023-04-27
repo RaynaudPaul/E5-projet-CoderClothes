@@ -211,3 +211,18 @@ footer .footer-a a{
     text-decoration: none;
 }
 
+footer .boxicon{
+    margin-top: 25px;
+    font-size: 45px;
+}
+
+.scroll-haut{
+    margin-bottom: 65px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 25px;
+    font-family: Consolas;
+    cursor: pointer;
+}
+
+

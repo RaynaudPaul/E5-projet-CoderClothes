@@ -1,20 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfileController!{% endblock %}
+{% block title %}Profile{% endblock %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/profil.css') }}">{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="profil-menu">
+        <ul class="list-menu">
+            <li><a href="{{ path('app_profile_index') }}">Mon profile</a></li>
+            <li><a href="{{ path('app_profile_orders') }}">Commandes</a></li>
+        </ul>
+    </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <section>
+        {{ form_start(profileForm) }}
+        <h1>Mes informations : </h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/jerem/PhpstormProjects/SymfonyEquipe3/src/Controller/ProfileController.php'|file_link(0) }}">src/Controller/ProfileController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/jerem/PhpstormProjects/SymfonyEquipe3/templates/profile/index.html.twig'|file_link(0) }}">templates/profile/index.html.twig</a></code></li>
-    </ul>
-</div>
+        <fieldset class="mb-3">
+            <legend>Mon identité : </legend>
+            {{ form_row(profileForm.lastname) }}
+            {{ form_row(profileForm.firstname) }}
+            {{ form_row(profileForm.email) }}
+        </fieldset>
+
+        <fieldset class="mb-3">
+            <legend>Mes coordonnées : </legend>
+            {{ form_row(profileForm.address) }}
+            {{ form_row(profileForm.zipcode) }}
+            {{ form_row(profileForm.city) }}
+        </fieldset>
+
+
+        <button type="submit" class="btn btn-primary btn-lg my-3">Modifier</button>
+        {{ form_end(profileForm) }}
+    </section>
+
 {% endblock %}

@@ -12,17 +12,44 @@
 .mentions .titre-mentions{
     font-size: 45px;
     margin-top: 67px;
-    margin-left: 45px;
+    text-align: center;
     color: #007bff;
 }
 
 .mentions .md{
     font-size: 45px;
-    margin-left: 67px;
+    text-align: center;
     color: #007bff;
 }
 .mentions .mw{
     font-size: 45px;
-    margin-left: 67px;
+    text-align: center;
     color: #007bff;
+}
+.mentions .pi{
+    font-size: 45px;
+    text-align: center;
+    color: #007bff;
+}
+.mentions .protection{
+    font-size: 45px;
+    text-align: center;
+    color: #007bff;
+}
+.mentions .cookies{
+    font-size: 45px;
+    text-align: center;
+    color: #007bff;
+}
+
+.mentions .descrip{
+    margin-bottom: 100px;
+    margin-top: 100px;
+}
+.mentions .intitulé{
+    margin-bottom: 10px;
+    font-size: 25px;
+    margin-left: 25px;
+    list-style-type: none;
+
 }

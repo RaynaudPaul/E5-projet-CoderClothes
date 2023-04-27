@@ -15,7 +15,7 @@
                     <div class="plusaccount">
                         <span>{{ app.user.lastname }} {{ app.user.firstname }}</span>
                         <a href="#">...</a>
-                        <a href="#">Mon compte</a>
+                        <a href="{{ path('app_profile_index') }}">Mon compte</a>
                         <a href="{{ path('app_logout') }}">Me déconnecter</a>
                     </div>
             {% endif %}
