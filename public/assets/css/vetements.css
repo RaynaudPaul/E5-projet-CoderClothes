@@ -1,0 +1,98 @@
+
+img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15%;
+    margin-bottom: 20%;
+}
+
+
+
+.ajouter-panier {
+    background-color: #007bff; /* Couleur de fond du bouton */
+    color: #000000; /* Couleur du texte */
+    border: none; /* Supprimer la bordure */
+    padding: 7px 14px; /* Ajouter un peu d'espace autour du texte */
+    border-radius: 50px; /* Ajouter des bords arrondis */
+    font-size: 15px; /* Taille de police */
+    cursor: pointer; /* Changer le curseur en forme de main au survol */
+    transition: background-color 0.3s ease; /* Ajouter une transition fluide lors du survol */
+    opacity: 80%;
+}
+
+.ajouter-panier:hover {
+    background-color: #0036d9; /* Changer la couleur de fond au survol */
+}
+
+.voirplus {
+    background-color: #007bff; /* Couleur de fond du bouton */
+    color: #ffffff; /* Couleur du texte */
+    border: none; /* Supprimer la bordure */
+    padding: 10px 14px; /* Ajouter un peu d'espace autour du texte */
+    margin-top: 30px;
+    border-radius: 50px; /* Ajouter des bords arrondis */
+    font-size: 15px; /* Taille de police */
+    cursor: pointer; /* Changer le curseur en forme de main au survol */
+    transition: background-color 0.3s ease; /* Ajouter une transition fluide lors du survol */
+    opacity: 80%;
+}
+
+#voirplus:hover {
+    background-color: #0036d9; /* Changer la couleur de fond au survol */
+}
+
+.blablaproduit{
+    width: 750px;
+    margin: 100px 450px 70px;
+    font-size: 25px;
+
+    text-align: center;
+    align-items: center;
+    padding: 45px;
+    border: 5px solid #007cff;
+    border-radius: 50px;
+    font-size: 15px; /* Taille de police */
+
+}
+
+.h3 {
+    font-size: 15px;
+}
+
+.container >div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.item {
+    flex: 1 0 33.333%; /* Largeur de chaque élément pour qu'ils occupent 1/3 de la ligne */
+    max-width: 33.333%; /* Limite la largeur pour éviter que les éléments occupent plus d'espace */
+}
+
+.bouttondetail {
+    background-color: #007bff; /* Couleur de fond du bouton */
+    color: #ffffff; /* Couleur du texte */
+    border: none; /* Supprimer la bordure */
+    padding: 10px 14px; /* Ajouter un peu d'espace autour du texte */
+    border-radius: 50px; /* Ajouter des bords arrondis */
+    margin-bottom: 45px;
+    font-size: 15px; /* Taille de police */
+    cursor: pointer; /* Changer le curseur en forme de main au survol */
+    transition: background-color 0.3s ease; /* Ajouter une transition fluide lors du survol */
+    opacity: 80%;
+
+}
+
+#textnamecat {
+    margin-bottom: 30px;
+}
+
+#nom-produit {
+    margin-bottom: 20px;
+}
+
+#imgvtm {
+    margin-bottom: 20px;
+}
