@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos Vêtements{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/menuhorizontal.css') }}">{% endblock %}
+
+
+
+{% block body %}
+    {% for category in categories %}
+        {% if category.getParent() != null %}
+            <section class="blablaproduit container">
+                <h2 id="textnamecat">{{ category.name }}</h2>
+                <div>
+                {% for product in products %}
+                    {% if product.getCategories() == category %}
+                        <article class="card item">
+                            <div class="card-body">
+                                <h3 id="nom-produit">{{ product.name }}</h3>
+                                <img id="imgvtm" src="assets/images/TSPHP.png" alt="LOGO">
+                                <button class="bouttondetail">Détail du Produit</button>
+                            </div>
+                        </article>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </section>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
