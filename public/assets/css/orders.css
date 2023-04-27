@@ -1,0 +1,37 @@
+ul {
+    display: flex;
+    width: calc(100vw - 200px);
+    max-width: 400px;
+    margin-top: 30px;
+    margin-left: 25px;
+    list-style-type: none;
+    margin: 10px auto;
+
+    box-shadow: 0 0 10px #0003;
+
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+li{
+    text-align: center;
+    width: 50%;
+//border: 2px solid #000;
+
+    padding: 20px;
+
+}
+
+li:first-child{
+    border-right: 0;
+}
+
+ul a{
+    font-size: 18px;
+    text-decoration: none;
+    color: #000;
+}
+
+ul a:hover{
+    border-bottom: 1px solid #000;
+}

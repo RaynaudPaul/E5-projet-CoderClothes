@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Coder clothes {% endblock %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/orders.css') }}">{% endblock %}
+
+
+{% block body %}
+
+    <div class="profil-menu">
+        <ul class="list-menu">
+            <li><a href="{{ path('app_profile_index') }}">Mon profile</a></li>
+            <li><a href="{{ path('app_profile_orders') }}">Commandes</a></li>
+        </ul>
+    </div>
+
+    <section>
+
+    </section>
+
+{% endblock %}
