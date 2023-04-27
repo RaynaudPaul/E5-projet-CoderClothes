@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class VêtementsController extends AbstractController
 {
-    #[Route('/v/tements', name: 'app_v_tements')]
+    #[Route('/vetements', name: 'app_vetements')]
 
     public function index(ProductsRepository $productsRepository, CategoriesRepository $categoriesRepository): Response
     {
@@ -18,7 +18,7 @@ class VêtementsController extends AbstractController
         $categories = $categoriesRepository->findAll();
 
 
-        return $this->render('vêtements/index.html.twig', [
+        return $this->render('vetements/index.html.twig', [
             'products'=> $products,
             'categories' => $categories,
         ]);
