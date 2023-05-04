@@ -17,7 +17,7 @@
                             <div class="card-body">
                                 <h3 id="nom-produit">{{ product.name }}</h3>
                                 <img id="imgvtm" src="assets/images/TSPHP.png" alt="LOGO">
-                                <button class="bouttondetail">Détail du Produit</button>
+                                <a href="{{ path('app_products_détails', {"slug" : product.slug}) }}" class="bouttondetail">Détail du Produit</a>
                             </div>
                         </article>
                     {% endif %}

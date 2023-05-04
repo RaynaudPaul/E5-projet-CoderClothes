@@ -57,6 +57,7 @@ img {
 }
 
 .bouttondetail {
+    display: block;
     background-color: #007bff; /* Couleur de fond du bouton */
     color: #ffffff; /* Couleur du texte */
     border: none; /* Supprimer la bordure */

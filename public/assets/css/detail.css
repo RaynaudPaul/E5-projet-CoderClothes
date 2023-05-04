@@ -1,0 +1,62 @@
+*{
+    font-family: Consolas;
+}
+
+section{
+    width: max-content;
+    margin: 200px auto;
+}
+
+.flex{
+    display: flex;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.flex > div{
+    margin: auto;
+}
+
+.gauche{
+    /*width: 40%;*/
+}
+
+.gauche img{
+    width: 700px;
+    border-radius: 5px;
+}
+
+.droite{
+    margin-left: 0px !important;
+}
+
+h1{
+    margin-top: 40px;
+    font-size: 30px;
+    width: max-content;
+    max-width: calc(100vw - 200px);
+}
+
+p{
+    margin-top: 10px;
+    font-size: 22px;
+    max-width: calc(100vw - 200px);
+}
+
+.ajouter-panier {
+    display: block;
+    width: max-content;
+    margin-top: 30px;
+    background-color: #007bff; /* Couleur de fond du bouton */
+    color: #FFFFFF; /* Couleur du texte */
+    border: none; /* Supprimer la bordure */
+    padding: 15px; /* Ajouter un peu d'espace autour du texte */
+    border-radius: 20px; /* Ajouter des bords arrondis */
+    font-size: 15px; /* Taille de police */
+    cursor: pointer; /* Changer le curseur en forme de main au survol */
+    transition: background-color 0.3s ease; /* Ajouter une transition fluide lors du survol */
+}
+
+.ajouter-panier:hover {
+    background-color: #0036d9; /* Changer la couleur de fond au survol */
+}

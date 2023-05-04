@@ -1,9 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Détail produit : {{ product.name }}{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/detail.css') }}">{% endblock %}
 
 {% block body %}
- <div>
-     <h1>Détail produit : {{ product.name }}</h1>
- </div>
+ <section>
+     <div class="flex">
+         <div class="gauche">
+             <img src="/assets/images/TSPHP.png">
+         </div>
+         <div class="droite">
+             <h1> {{ product.name }}</h1>
+             <h2>{{ product.categories.name }}</h2>
+             <h1>{{ product.price }} €</h1>
+             <a class="ajouter-panier">Ajouter au panier</a>
+         </div>
+     </div>
+     <h1>Description</h1>
+     <p>{{ product.description }}</p>
+ </section>
 {% endblock %}
