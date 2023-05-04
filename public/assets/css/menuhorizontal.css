@@ -1,3 +1,11 @@
+img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15%;
+    margin-bottom: 20%;
+}
+
 .horizontal-menu {
     display: flex;
     align-items: center;
@@ -29,4 +37,21 @@ h1{
 
 li:last-of-type {
     margin-right: 0;
+}
+
+.voirplus {
+    background-color: #007bff; /* Couleur de fond du bouton */
+    color: #ffffff; /* Couleur du texte */
+    border: none; /* Supprimer la bordure */
+    padding: 10px 14px; /* Ajouter un peu d'espace autour du texte */
+    margin-top: 30px;
+    border-radius: 50px; /* Ajouter des bords arrondis */
+    font-size: 15px; /* Taille de police */
+    cursor: pointer; /* Changer le curseur en forme de main au survol */
+    transition: background-color 0.3s ease; /* Ajouter une transition fluide lors du survol */
+    opacity: 80%;
+}
+
+#voirplus:hover {
+    background-color: #0036d9; /* Changer la couleur de fond au survol */
 }
