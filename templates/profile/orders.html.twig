@@ -9,13 +9,18 @@
 
     <div class="profil-menu">
         <ul class="list-menu">
-            <li><a href="{{ path('app_profile_index') }}">Mon profile</a></li>
-            <li><a href="{{ path('app_profile_orders') }}">Commandes</a></li>
+            <li><a href="{{ path('app_profile_index') }}">Mon profil</a></li>
+            <li><a href="{{ path('app_profile_orders') }}" class="active">Commandes</a></li>
         </ul>
     </div>
 
-    <section>
-
-    </section>
+    <ul class="lCommandes">
+        {% for aorder in orders %}
+            <li>
+                <span> Numéro commande : {{ aorder.getReference() }}</span>
+                <a href="">Voir plus </a>
+            </li>
+        {% endfor %}
+    </ul>
 
 {% endblock %}

@@ -58,12 +58,14 @@ img {
 
 .bouttondetail {
     display: block;
+    width: max-content;
+    margin: 0 auto 25px auto;
+    text-decoration: none;
     background-color: #007bff; /* Couleur de fond du bouton */
     color: #ffffff; /* Couleur du texte */
     border: none; /* Supprimer la bordure */
     padding: 10px 14px; /* Ajouter un peu d'espace autour du texte */
     border-radius: 50px; /* Ajouter des bords arrondis */
-    margin-bottom: 45px;
     font-size: 15px; /* Taille de police */
     cursor: pointer; /* Changer le curseur en forme de main au survol */
     transition: background-color 0.3s ease; /* Ajouter une transition fluide lors du survol */

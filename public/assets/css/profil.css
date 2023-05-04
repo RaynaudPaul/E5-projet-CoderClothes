@@ -1,3 +1,7 @@
+.profil-menu{
+    margin: 50px 0;
+}
+
 ul {
     display: flex;
     width: calc(100vw - 200px);
@@ -36,6 +40,11 @@ ul a:hover{
     border-bottom: 1px solid #000;
 }
 
+a.active{
+    border-bottom: 2px solid #000;
+}
+
+
 form {
     position: relative;
     display: -webkit-box;
@@ -55,10 +64,8 @@ form {
     background-color: #fff;
     width: calc(100vw - 100px);
     max-width: 1000px;
-    margin: auto;
+    margin: 100px auto;
 
-    margin-top: 30px;
-    margin-bottom: 30px;
 
 }
 form div{

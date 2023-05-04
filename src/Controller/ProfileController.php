@@ -54,15 +54,31 @@ class ProfileController extends AbstractController
             ]);
         }
 
-    return $this->render("");
+    return $this->redirectToRoute('app_login');
 
     }
 
     #[Route('/commandes', name: 'orders')]
-    public function orders(): Response
+    public function orders(TokenStorageInterface $tokenStorage): Response
     {
-        return $this->render('profile/orders.html.twig', [
-            'controller_name' => 'Commandes de l\'utilisateur',
-        ]);
+
+        $token = $tokenStorage->getToken();
+
+        // Vérifier si un utilisateur est connecté
+        if ($token && $token->getUser()) {
+            // Récupérer l'objet User
+            $user = $token->getUser();
+
+            $orders = $user->getOrders();
+
+
+            return $this->render('profile/orders.html.twig', [
+                'controller_name' => 'Commandes de l\'utilisateur',
+                'orders' => $orders
+            ]);
+        }
+
+        return $this->redirectToRoute('app_login');
+
     }
 }

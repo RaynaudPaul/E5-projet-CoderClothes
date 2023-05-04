@@ -7,32 +7,32 @@
 {% block body %}
     <div class="profil-menu">
         <ul class="list-menu">
-            <li><a href="{{ path('app_profile_index') }}">Mon profile</a></li>
+            <li><a href="{{ path('app_profile_index') }}" class="active">Mon profil</a></li>
             <li><a href="{{ path('app_profile_orders') }}">Commandes</a></li>
         </ul>
     </div>
 
-    <section>
-        {{ form_start(profileForm) }}
-        <h1>Mes informations : </h1>
 
-        <fieldset class="mb-3">
-            <legend>Mon identité : </legend>
-            {{ form_row(profileForm.lastname) }}
-            {{ form_row(profileForm.firstname) }}
-            {{ form_row(profileForm.email) }}
-        </fieldset>
+    {{ form_start(profileForm) }}
+    <h1>Mes informations : </h1>
 
-        <fieldset class="mb-3">
-            <legend>Mes coordonnées : </legend>
-            {{ form_row(profileForm.address) }}
-            {{ form_row(profileForm.zipcode) }}
-            {{ form_row(profileForm.city) }}
-        </fieldset>
+    <fieldset class="mb-3">
+        <legend>Mon identité : </legend>
+        {{ form_row(profileForm.lastname) }}
+        {{ form_row(profileForm.firstname) }}
+        {{ form_row(profileForm.email) }}
+    </fieldset>
+
+    <fieldset class="mb-3">
+        <legend>Mes coordonnées : </legend>
+        {{ form_row(profileForm.address) }}
+        {{ form_row(profileForm.zipcode) }}
+        {{ form_row(profileForm.city) }}
+    </fieldset>
 
 
-        <button type="submit" class="btn btn-primary btn-lg my-3">Modifier</button>
-        {{ form_end(profileForm) }}
-    </section>
+    <button type="submit" class="btn btn-primary btn-lg my-3">Modifier</button>
+    {{ form_end(profileForm) }}
+
 
 {% endblock %}

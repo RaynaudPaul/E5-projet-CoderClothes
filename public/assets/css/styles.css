@@ -89,6 +89,8 @@
 
 .account{
     position: relative;
+
+    transition: all .3s;
 }
 
 .account a{
@@ -103,12 +105,13 @@
     right: 0;
 
     background: #fff;
-    padding: 5px;
+    padding: 10px;
 
-    border: 1px solid #000;
+    /*border: 1px solid #000;*/
     border-radius: 10px;
+    box-shadow: 10px 0 15px #0003;
 
-    width: 170px;
+    width: 200px;
     height: -webkit-max-content;
     height: -moz-max-content;
     height: max-content;

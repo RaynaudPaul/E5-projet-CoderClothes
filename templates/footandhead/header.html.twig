@@ -1,4 +1,3 @@
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <header class="header">
     <a href="/" class="logo"><pre>&lt;Coder/> </pre>Clothes</a>
     <nav class="navbar">
@@ -15,8 +14,8 @@
             {% if app.user %}
                     <div class="plusaccount">
                         <span>{{ app.user.lastname }} {{ app.user.firstname }}</span>
-                        <a href="#">...</a>
                         <a href="{{ path('app_profile_index') }}">Mon compte</a>
+                        <a href="{{ path('app_profile_orders') }}">Mes commandes</a>
                         <a href="{{ path('app_logout') }}">Me déconnecter</a>
                     </div>
             {% endif %}
