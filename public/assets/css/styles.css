@@ -81,7 +81,8 @@
     border-bottom: 2px solid #000;
 }
 
-.navbar a i{
+.navbar a i,
+.navbar span i{
     -webkit-transform: scale(1.5);
     -ms-transform: scale(1.5);
     transform: scale(1.5);
@@ -93,7 +94,8 @@
     transition: all .3s;
 }
 
-.account a{
+.account a,
+.account span{
     text-decoration: none;
     color: #000;
 }

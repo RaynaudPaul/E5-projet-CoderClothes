@@ -7,17 +7,24 @@
         <a href="#"><i class='bx bx-shopping-bag'></i></a>
 
         <div class="account">
-            <a href="{{ path('app_login') }}">
-                <i class='bx bx-user-circle'></i>
-            </a>
-
             {% if app.user %}
-                    <div class="plusaccount">
-                        <span>{{ app.user.lastname }} {{ app.user.firstname }}</span>
-                        <a href="{{ path('app_profile_index') }}">Mon compte</a>
-                        <a href="{{ path('app_profile_orders') }}">Mes commandes</a>
-                        <a href="{{ path('app_logout') }}">Me déconnecter</a>
-                    </div>
+                <span>
+                    <i class='bx bx-user-circle'></i>
+                </span>
+
+                <div class="plusaccount">
+                    <span>{{ app.user.lastname }} {{ app.user.firstname }}</span>
+                    <a href="{{ path('app_profile_index') }}">Mon compte</a>
+                    <a href="{{ path('app_profile_orders') }}">Mes commandes</a>
+                    <a href="{{ path('app_logout') }}">Me déconnecter</a>
+                </div>
+
+            {% else %}
+
+                <a href="{{ path('app_login') }}">
+                    <i class='bx bx-user-circle'></i>
+                </a>
+
             {% endif %}
         </div>
     </nav>

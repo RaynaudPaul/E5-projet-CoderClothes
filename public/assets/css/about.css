@@ -158,7 +158,7 @@
     margin: 0;
     padding: 15px;
 
-    background: #fff;
+    background-color: #fff;
 
     -webkit-filter: invert(0%);
 
@@ -175,7 +175,7 @@
 }
 
 .About .equipe .aEquipe .sociaux a:hover img {
-    background: #ff8300;
+    background-color: #ff8300;
     -webkit-filter: invert(100%);
     filter: invert(100%);
 

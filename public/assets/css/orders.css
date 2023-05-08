@@ -50,7 +50,13 @@ ul.list-menu a:hover{
     border-bottom: 2px solid #000;
 }
 
+h2{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
 .lCommandes {
+    text-align: center;
     display: flex;
     flex-direction: column;
 }
@@ -71,3 +77,20 @@ ul.list-menu a:hover{
     transition: background-color 0.3s ease;
 }
 
+.lCommandes a:hover {
+    background-color: #0036d9;
+}
+
+.empty{
+    position: relative;
+    height: calc(70vh - 150px);
+}
+
+.empty h1{
+    position: absolute;
+    inset: 0;
+    bottom: 200px;
+    width: max-content;
+    height: max-content;
+    margin: auto;
+}

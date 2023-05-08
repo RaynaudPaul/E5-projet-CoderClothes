@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Orders;
+use App\Entity\OrdersDetails;
 use App\Form\ProfileFormType;
+use App\Repository\OrdersRepository;
 use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -71,14 +74,51 @@ class ProfileController extends AbstractController
 
             $orders = $user->getOrders();
 
+            //dd($orders[0]);
 
             return $this->render('profile/orders.html.twig', [
-                'controller_name' => 'Commandes de l\'utilisateur',
                 'orders' => $orders
             ]);
         }
 
         return $this->redirectToRoute('app_login');
 
+    }
+
+    #[Route('/commandes/{orders_id}', name: 'orderDetail')]
+    public function orderDetail(TokenStorageInterface $tokenStorage,OrdersRepository $ordersRepository,$orders_id): Response
+    {
+        $token = $tokenStorage->getToken();
+
+        $result = $ordersRepository->findBy(['reference'=>$orders_id]);
+
+        $products = array();
+        $aOrder = array();
+
+
+        // Vérifier si un utilisateur est connecté
+        if ($token && $token->getUser()) {
+            $user = $token->getUser();
+
+            if($result !== array()){
+                $aOrder = $result[0];
+            }
+
+            if (isset($aOrder) && $aOrder != array() && $user === $aOrder->getUsers()){
+
+                $products = $aOrder->getOrdersDetails();
+
+
+                //dd($products);
+            }else{
+                $aOrder = array();
+            }
+
+        }else{
+            return $this->redirectToRoute('app_login');
+        }
+
+        return $this->render('profile/orderDetail.html.twig',
+        compact("products","aOrder"));
     }
 }

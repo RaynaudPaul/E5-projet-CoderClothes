@@ -14,13 +14,38 @@
         </ul>
     </div>
 
-    <ul class="lCommandes">
+
+    {% if orders.count() > 0%}
+    <h2>Nombre de commandes : {{ orders.count() }}
+
+    </h2>
+        <ul class="lCommandes">
         {% for aorder in orders %}
             <li>
-                <span> Numéro commande : {{ aorder.getReference() }}</span>
-                <a href="">Voir plus </a>
+                <span> Numéro commande : {{ aorder.reference }}<br>
+                    Date de création: {{ aorder.getCreatedAt()|date("m/d/Y") }}<br>
+                    {% set total = 0 %}
+
+                    {% for aProduct in aorder.ordersDetails %}
+
+                        {% set total = total + aProduct.quantity*aProduct.price %}
+
+                    {% endfor %}
+                    Total : {{ total }} €
+
+                </span>
+                <a href="{{ path('app_profile_orderDetail', {'orders_id' : aorder.getReference()}) }}">Voir plus </a>
             </li>
         {% endfor %}
-    </ul>
+        </ul>
+    {% else %}
+
+    <div class="empty">
+        <h1>Aucune commandes</h1>
+    </div>
+
+    {% endif %}
+
+
 
 {% endblock %}

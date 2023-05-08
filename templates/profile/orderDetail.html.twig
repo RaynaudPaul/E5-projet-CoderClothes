@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Coder clothes {% endblock %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/orderDetail.css') }}">{% endblock %}
+
+{% block body %}
+
+    <div class="aCommmande">
+        <a href="{{ path('app_profile_orders') }}" class="back">Retour</a>
+
+        {% if aOrder is empty %}
+            <h2>Impossible d'accéder à cette commande </h2>
+
+        {% else %}
+        <h2>Numero de commande : {{ aOrder.reference }}</h2>
+
+        <div class="grid">
+            <div class="elemenet">
+                <span class="name">Nom</span>
+                <span>Prix</span>
+                <span>Nombre</span>
+                <span>Prix total</span>
+            </div>
+
+
+            {% if products is empty %}
+                <h3 class="rien">Aucun article</h3>
+            {% endif %}
+
+
+            {% set total = 0 %}
+
+            {% for aProduct in products %}
+                <div class="aProduct">
+                    <span class="name">{{ aProduct.products.name }}</span>
+                    <span>{{ aProduct.price }} €</span>
+                    <span>{{ aProduct.quantity }}</span>
+                    <span>{{ aProduct.quantity*aProduct.price }} €</span>
+                </div>
+
+                {% set total = total + aProduct.quantity*aProduct.price %}
+
+            {% endfor %}
+
+            <div class="total">
+                <span class="text">Total : </span>
+                <span>{{ total }} €</span>
+            </div>
+        </div>
+
+        {% endif %}
+    </div>
+
+
+
+{% endblock %}
