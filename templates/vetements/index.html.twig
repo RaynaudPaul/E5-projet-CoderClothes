@@ -8,7 +8,7 @@
 {% block body %}
     {% for category in categories %}
         {% if category.getParent() != null %}
-            <section class="blablaproduit container">
+            <section class="blablaproduit container" id="{{ category.name }}">
                 <h2 id="textnamecat">{{ category.name }}</h2>
                 <div>
                 {% for product in products %}
