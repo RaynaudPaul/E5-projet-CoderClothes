@@ -23,7 +23,7 @@
         {% for aorder in orders %}
             <li>
                 <span> Numéro commande : {{ aorder.reference }}<br>
-                    Date de création: {{ aorder.getCreatedAt()|date("m/d/Y") }}<br>
+                    Date de création: {{ aorder.getCreatedAt()|date("d/m/Y") }}<br>
                     {% set total = 0 %}
 
                     {% for aProduct in aorder.ordersDetails %}

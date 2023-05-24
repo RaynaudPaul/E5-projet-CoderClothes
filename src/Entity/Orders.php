@@ -24,7 +24,7 @@ class Orders
     #[ORM\ManyToOne(inversedBy: 'orders')]
     private ?Coupons $coupons = null;
 
-    #[ORM\ManyToOne(inversedBy: 'orders')]
+    #[ORM\ManyToOne(cascade:["persist"],inversedBy: 'orders')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Users $users = null;
 
@@ -40,6 +40,8 @@ class Orders
     {
         return $this->id;
     }
+
+    //public function setId()void
 
     public function getReference(): ?string
     {

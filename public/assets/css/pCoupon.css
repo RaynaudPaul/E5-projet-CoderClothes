@@ -1,0 +1,62 @@
+.coupon{
+    width: max-content;
+    min-width: 200px;
+    max-width: 800px;
+    margin: 40px auto;
+    text-align: right;
+    border: 5px solid #007bff;
+    border-radius: 40px;
+    padding: 30px;
+
+    text-align: center;
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.flex{
+    display: flex;
+
+    padding: 15px;
+    border: 1px solid #000;
+
+    border-radius: 20px;
+
+    font-size: 19px;
+}
+
+.flex h3{
+    font-size: 19px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+}
+
+form input{
+    width: 90%;
+    height: 30px;
+    margin: 10px auto;
+
+    border-radius: 10px;
+    text-align: center;
+
+    border: 1px solid #888;
+}
+
+form input[type=submit]{
+    height: 35px;
+    background-color: #007bff;
+    color: #fff;
+
+    cursor: pointer;
+
+    transition: all .3s;
+}
+form input[type=submit]:hover {
+    background-color: #0036d9;
+}

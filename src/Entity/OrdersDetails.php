@@ -20,7 +20,7 @@ class OrdersDetails
     private ?Orders $orders = null;
 
     #[ORM\Id]
-    #[ORM\ManyToOne(inversedBy: 'ordersDetails')]
+    #[ORM\ManyToOne(cascade:["persist"],inversedBy: 'ordersDetails')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Products $products = null;
 

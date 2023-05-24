@@ -2,6 +2,47 @@
     font-family: Consolas;
 }
 
+.popup {
+    display: block;
+    position: fixed;
+    top: -300px;
+    left: 0;
+    right: 0;
+    min-width: 450px;
+    width: max-content;
+    background-color: #007bff;
+    padding: 20px;
+
+    color: #fff;
+
+    border-radius: 20px;
+
+    margin: auto;
+
+    transition: all .3s;
+}
+
+.popup p {
+    margin: 0;
+}
+
+.close {
+    position: relative;
+    top: -5px;
+    color: #fff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: all .3s;
+}
+
+.close:hover {
+    color: #000;
+}
+
+
 section{
     width: max-content;
     margin: 200px auto;
@@ -43,10 +84,22 @@ p{
     max-width: calc(100vw - 200px);
 }
 
+.quantity{
+    margin-top: 30px;
+
+    width: 100px;
+    height: 30px;
+    text-align: center;
+
+    border: 1px solid #000;
+
+    border-radius: 5px;
+}
+
 .ajouter-panier {
     display: block;
     width: max-content;
-    margin-top: 30px;
+    margin-top: 20px;
     background-color: #007bff; /* Couleur de fond du bouton */
     color: #FFFFFF; /* Couleur du texte */
     border: none; /* Supprimer la bordure */

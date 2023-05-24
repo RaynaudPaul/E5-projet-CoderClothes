@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/panier.css') }}">{% endblock %}
+
+{% block body %}
+    <div style="min-height: calc(100vh - 635px)">
+        <section class="panier">
+
+            <h1>Panier :</h1>
+
+            {% if aOrder is empty %}
+                    <h3 style="text-align: center;margin: 20px 0"class="rien">Aucun article</h3>
+            {% else %}
+                <div class="grid">
+                    <div class="elemenet">
+                        <span class="name">Nom</span>
+                        <span>Prix</span>
+                        <span>Nombre</span>
+                        <span>Prix total</span>
+                        <span></span>
+                    </div>
+
+
+                    {% if products is empty %}
+                        <h3 class="rien">Aucun article</h3>
+                    {% endif %}
+
+
+                    {% set total = 0 %}
+
+                    {% for aProduct in products %}
+                        <div class="aProduct">
+                            <a href="{{ path('app_products_détails', {"slug" : aProduct.products.slug}) }}" class="name url">{{ aProduct.products.name }}</a>
+                            <span>{{ aProduct.price }} €</span>
+                            <span>{{ aProduct.quantity }}</span>
+                            <span>{{ aProduct.quantity*aProduct.price }} €</span>
+                            <a class="remove" href="{{ path('app_panier_remove', {'slug' : aProduct.products.getSlug()}) }}">Supprimer</a>
+                        </div>
+
+                        {% set total = total + aProduct.quantity*aProduct.price %}
+
+                    {% endfor %}
+
+                    <div class="total">
+                        <span class="text">Total : </span>
+                        <span>{{ total }} €</span>
+                    </div>
+                </div>
+
+                <a href="{{ path('app_panier_clear') }}" class="clear">Tous supprimer</a>
+
+                {% if connected %}
+                    <a href="{{ path('app_panier_coupon') }}" class="commande">Passer la commande</a>
+                {% else %}
+                    <a href="{{ path('app_login') }}" class="commande">Se connecter</a>
+                {% endif %}
+
+                {% endif %}
+
+        </section>
+    </div>
+{% endblock %}

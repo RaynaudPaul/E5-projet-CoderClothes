@@ -40,16 +40,24 @@
     display: flex;
     flex-direction: column;
     margin-top: 20px;
+    padding: 5px;
 }
 
 .grid .elemenet,
 .grid .aProduct,
-.grid .total{
+.grid .total,
+.grid .remise,
+.grid .totalRemise{
     display: grid;
     margin: 5px;
     grid-template-columns: repeat(5, 1fr);
 
     text-align: center;
+}
+.grid .total,
+.grid .remise,
+.grid .totalRemise{
+    margin: 0;
 }
 
 .grid .rien{
@@ -67,17 +75,25 @@
 .grid .total{
     margin-top: 50px;
 }
-
 .grid .total span{
-    border-radius: 0px 10px 10px 0px;
-    border-right: 2px solid #000;
     border-top: 2px solid #000;
+}
+
+.grid .total span,
+.grid .remise span,
+.grid .totalRemise span{
+    border-right: 2px solid #000;
+}
+
+.grid .totalRemise span{
+    border-right: 2px solid #000;
     border-bottom: 2px solid #000;
 }
 
-.grid .total .text{
-    grid-column: 4;
-    border-radius: 10px 0px 0px 10px;
+.grid .total .text,
+.grid .remise .text,
+.grid .totalRemise .text{
+    grid-column: 2;
     border-left: 2px solid #000;
     border-right: 0;
 }

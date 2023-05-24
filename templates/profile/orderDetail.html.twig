@@ -44,8 +44,24 @@
             {% endfor %}
 
             <div class="total">
-                <span class="text">Total : </span>
+                <span class="text" style="border-radius: 20px 0 0 0">Total : </span>
                 <span>{{ total }} €</span>
+                <span style="border-right: none"></span>
+                <span style="border-radius:0 20px 0 0"></span>
+            </div>
+
+            <div class="remise">
+                <span class="text">Remise : </span>
+                <span>code remise</span>
+                <span style="border-right: none">Montant</span>
+                <span >-20%</span>
+            </div>
+
+            <div class="totalRemise">
+                <span class="text" style="border-radius:0 0 0 20px">Total avec remise: </span>
+                <span>totalRemise €</span>
+                <span style="border-right: none"></span>
+                <span style="border-radius: 0 0 20px 0"></span>
             </div>
         </div>
 

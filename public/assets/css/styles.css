@@ -83,9 +83,24 @@
 
 .navbar a i,
 .navbar span i{
+    position: relative;
     -webkit-transform: scale(1.5);
     -ms-transform: scale(1.5);
     transform: scale(1.5);
+}
+
+.navbar>a>i>span
+{
+    position: absolute;
+    right: -5px;
+    bottom: -5px;
+    min-width: 15px;
+    padding: 2px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #dc3545;
+    border-radius: 50%;
+    text-align: center;
 }
 
 .account{

@@ -4,19 +4,71 @@
 {% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/detail.css') }}">{% endblock %}
 
 {% block body %}
-    <section>
-        <div class="flex">
-            <div class="gauche">
-                <img src="/assets/images/TSPHP.png">
-            </div>
-            <div class="droite">
-                <h1> {{ product.name }}</h1>
-                <h2>{{ product.categories.name }}</h2>
-                <h1>{{ product.price }} €</h1>
-                <a class="ajouter-panier">Ajouter au panier</a>
-            </div>
-        </div>
-        <h1>Description</h1>
-        <p>{{ product.description }}</p>
-    </section>
+ <section style="min-height: calc(100vh - 300px)">
+     <script>
+         // Fermer le popup
+         document.getElementById("closePopup").addEventListener("click", function() {
+         });
+
+         function sleep(ms) {
+             return new Promise(resolve => setTimeout(resolve, ms));
+         }
+
+         async function sendRequest() {
+             document.getElementById("popup").style.top = "-300px";
+             sleep(5);
+             valQuantity = parseInt(document.getElementById('quantity').value);
+             url = '/panier/add/{{ product.slug }}/?quantity='+valQuantity;
+             var xhr = new XMLHttpRequest();
+             console.log(url);
+             xhr.open('GET', url, true);
+             xhr.send();
+
+             document.getElementById('quantity').value = 1;
+             document.getElementById('btnAdd').text = "Ajouter encore ?"
+             document.getElementById('number').textContent = valQuantity+" {{ product.name }} ajouté !!";
+             document.getElementById("popup").style.top = "15px";
+
+             document.getElementById('pTotal').style.display = "block";
+
+             var total = parseInt(document.getElementById('pTotal').textContent);
+
+             total += valQuantity;
+
+             document.getElementById('pTotal').textContent = total;
+
+             await sleep(5000);
+
+             document.getElementById("popup").style.top = "-300px";
+         }
+
+         function remove(){
+             document.getElementById("popup").style.top = 0;
+
+         }
+     </script>
+     <div id="popup" class="popup">
+         <span id="closePopup" class="close" onclick='document.getElementById("popup").style.top = "-300px"'>&times;</span>
+         <p id="number"></p>
+     </div>
+     <div class="flex">
+         <div class="gauche">
+             <img src="/assets/images/TSPHP.png">
+         </div>
+         <div class="droite">
+             <h1> {{ product.name }}</h1>
+             <h2>{{ product.categories.name }}</h2>
+             <h1>{{ product.price }} €</h1>
+             <input class="quantity" id="quantity" type="number" name="quantity" min="1" value="1">
+             {% if alreadyadded %}
+                 <a class="ajouter-panier" onclick="sendRequest()" id="btnAdd">Ajouter encore ?</a>
+             {% else %}
+                 <a class="ajouter-panier" onclick="sendRequest()" id="btnAdd">Ajouter au panier</a>
+             {% endif %}
+         </div>
+     </div>
+     <h1>Description</h1>
+     <p>{{ product.description }}</p>
+ </section>
+
 {% endblock %}

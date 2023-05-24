@@ -4,13 +4,36 @@
         <a href="{{ path('app_vetements') }}">Nos Vêtements</a>
         <a href="{{ path('app_about') }}">À propos de la marque</a>
         <a href="{{ path('app_contact') }}">Contact</a>
-        <a href="#"><i class='bx bx-shopping-bag'></i></a>
+
+        {% set OrderDetails =  app.session.get('order') %}
+
+        {% set total = 0 %}
+
+        {% if OrderDetails is not null %}
+            {% for aOrderDetail in OrderDetails.ordersDetails %}
+
+                {% set total = total + aOrderDetail.quantity %}
+
+            {% endfor %}
+        {% endif %}
+
+        <a href="{{ path('app_panier') }}">
+            <i class='bx bx-shopping-bag'>
+                {% if total > 0 %}
+                    <span id="pTotal">{{ total }}</span>
+                {% else %}
+                    <span id="pTotal" style="display: none">{{ total }}</span>
+                {% endif %}
+            </i>
+
+        </a>
 
         <div class="account">
             {% if app.user %}
                 <span>
                     <i class='bx bx-user-circle'></i>
                 </span>
+
 
                 <div class="plusaccount">
                     <span>{{ app.user.lastname }} {{ app.user.firstname }}</span>

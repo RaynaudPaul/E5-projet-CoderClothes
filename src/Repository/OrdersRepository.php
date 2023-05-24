@@ -39,6 +39,20 @@ class OrdersRepository extends ServiceEntityRepository
         }
     }
 
+    public function findMaxId(): ?int
+    {
+        $qb = $this->createQueryBuilder('o');
+        $qb->select('MAX(o.id) as maxId');
+
+        $result = $qb->getQuery()->getOneOrNullResult();
+
+        if ($result && isset($result['maxId'])) {
+            return (int) $result['maxId'];
+        }
+
+        return null;
+    }
+
 //    /**
 //     * @return Orders[] Returns an array of Orders objects
 //     */

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/pCoupon.css') }}">{% endblock %}
+
+{% block body %}
+    <div style="min-height: calc(100vh - 635px)">
+        <section class="coupon">
+            <h1>Coupon de réduction : </h1>
+
+            <div class="flex">
+                <h3>Prix actuelle :  </h3>
+                <span>{{ total }} €</span>
+            </div>
+
+            <form action="#" method="post">
+                <h3>Ajouter un coupon</h3>
+                <input type="text" name="coupon" placeholder="Laisser vide si aucun">
+                <input type="submit" value="Envoyer">
+            </form>
+
+        </section>
+    </div>
+{% endblock %}
