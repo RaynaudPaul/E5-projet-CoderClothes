@@ -50,16 +50,34 @@
                 <span style="border-radius:0 20px 0 0"></span>
             </div>
 
+            {% if aOrder.getCoupons() is not null %}
+                {% set coupon = aOrder.getCoupons() %}
+                {% set total = total - (total * (coupon.discount / 100)) %}
+
+            {% endif %}
+
             <div class="remise">
-                <span class="text">Remise : </span>
-                <span>code remise</span>
+                <span class="text">Code Remise : </span>
+                <span>
+                    {% if coupon is defined %}
+                        {{ coupon.code }}
+                    {% else %}
+                        Pas de code
+                    {% endif %}
+                </span>
                 <span style="border-right: none">Montant</span>
-                <span >-20%</span>
+                <span>
+                     {% if coupon is defined %}
+                         -{{ coupon.discount }}%
+                     {% else %}
+                         Pas de remise
+                     {% endif %}
+                </span>
             </div>
 
             <div class="totalRemise">
                 <span class="text" style="border-radius:0 0 0 20px">Total avec remise: </span>
-                <span>totalRemise €</span>
+                <span>{{ total }} €</span>
                 <span style="border-right: none"></span>
                 <span style="border-radius: 0 0 20px 0"></span>
             </div>

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Coder clothes {% endblock %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">{% endblock %}
+
+{% block body %}
+
+<section>
+    {% include "admin/navAdmin.html.twig" %}
+
+    <main>
+        <h1>Liste des coupons : </h1>
+
+        {{ form_start(form, {'attr': {'class': 'coupon_form'}}) }}
+        <h2>Ajouter un coupon : </h2>
+        {{ form_widget(form) }}
+        <button type="submit">Enregistrer</button>
+        {{ form_end(form) }}
+
+    </main>
+
+</section>
+
+{% endblock %}

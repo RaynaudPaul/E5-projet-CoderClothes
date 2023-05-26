@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Coder clothes {% endblock %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">{% endblock %}
+
+{% block body %}
+<section>
+    {% include "admin/navAdmin.html.twig" %}
+
+    <main>
+        <h1>Administration : </h1>
+    </main>
+</section>
+{% endblock %}

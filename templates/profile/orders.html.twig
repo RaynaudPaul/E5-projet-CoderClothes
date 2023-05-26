@@ -31,6 +31,10 @@
                         {% set total = total + aProduct.quantity*aProduct.price %}
 
                     {% endfor %}
+
+                    {% if aorder.getCoupons() is not null %}
+                        {% set total = total - (total * (aorder.getCoupons().discount / 100)) %}
+                    {% endif %}
                     Total : {{ total }} €
 
                 </span>

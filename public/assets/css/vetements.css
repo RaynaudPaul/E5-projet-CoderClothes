@@ -30,12 +30,11 @@ img {
 .blablaproduit{
     width: 750px;
     margin: 100px auto;
-    font-size: 25px;
 
     text-align: center;
     align-items: center;
     padding: 45px;
-    border: 5px solid #007cff;
+    border: 2px solid #007cff;
     border-radius: 50px;
     font-size: 15px; /* Taille de police */
 

@@ -1,0 +1,239 @@
+h1{
+    margin-top: 20px;
+    text-align: center;
+}
+
+section{
+    display: flex;
+
+    width: max-content;
+    margin: 0 auto;
+}
+
+section nav{
+    width: 350px;
+
+    margin-top: 30px;
+    border: 2px solid #007bff;
+    border-radius: 50px;
+    text-align: center;
+    padding: 30px;
+
+    font-family: Consolas;
+}
+
+section nav>a {
+    font-size: 30px;
+    margin-bottom: 30px;
+
+    font-weight: bold;
+
+    color: #007bff;
+    text-decoration: none;
+}
+section nav>a pre{
+    border-bottom: 1px solid #0000;
+}
+
+section nav>a:hover pre{
+    border-bottom: 1px solid #007bff;
+}
+
+
+section ul{
+    /*background-color: #73a9e7;*/
+    border-radius: 10px;
+    width: calc(100% - 25px);
+    padding: 15px;
+    margin: 10px;
+
+    list-style: none;
+}
+
+section ul h2{
+    width: max-content;
+    margin: 0 auto 10px auto;
+    border-bottom: 2px solid #007bff;
+}
+
+section ul li{
+    margin: 5px 0;
+}
+
+section ul li a{
+    font-size: 17px;
+    text-decoration: none;
+    color: #007bff;
+
+    border-bottom: 1px solid #0000;
+}
+
+section ul li a:hover{
+    border-bottom: 1px solid #007bff;
+}
+
+section main{
+    margin-left: 30px;
+    min-width: 60vw;
+}
+
+section main h1{
+    margin-top: 40px;
+    font-size: 35px;
+
+    font-family: Consolas;
+}
+
+table{
+    margin-top: 20px;
+    width: 100%;
+    max-height: calc(100% - 75px);
+}
+
+table td,
+table th{
+    height: 30px;
+
+    text-align: center;
+}
+
+table tr.col{
+    background-color: #007bff;
+    color: #fff;
+}
+
+table td.roles{
+    padding: 0 8px;
+}
+
+table .role,
+table .row a{
+    display: block;
+    text-decoration: none;
+    width: max-content;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 15px auto;
+    color: #fff;
+}
+
+table .role.rouge{
+    background-color: #dc3545;
+}
+
+
+table .role.orange{
+    background-color: #ff8300;
+}
+
+table .role.vert{
+    background-color: #7bd054;
+}
+
+table .row a.rouge{
+    background-color: #ff0000;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"] + label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #ff0000;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+}
+
+input[type="checkbox"]:checked + label {
+    background-color: #007bff; /* Couleur lorsqu'elle est cochée */
+}
+
+input[type="checkbox"]:disabled + label {
+    opacity: 0.8; /* Opacité réduite pour les cases désactivées */
+    cursor: not-allowed;
+}
+
+form.coupon_form{
+    width: 750px;
+    margin: 100px auto;
+    text-align: center;
+    align-items: center;
+    padding: 45px;
+    border: 2px solid #007cff;
+    border-radius: 50px;
+    font-size: 15px;
+}
+
+form.coupon_form h2{
+    text-align: center;
+    width: max-content;
+    margin: 0 auto 20px auto;
+    font-size: 30px;
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+    padding: 5px;
+}
+
+form.coupon_form input,
+form.coupon_form select,
+form.coupon_form textarea{
+    display: block;
+    height: 25px;
+    border: 1px solid #0003;
+
+    border-radius: 5px;
+
+    margin: 5px auto;
+}
+
+form.coupon_form input{
+    text-align: center;
+}
+
+form.coupon_form textarea{
+    width: 250px;
+    height: 80px;
+}
+
+form.coupon_form div.datetime>div{
+    position: relative;
+    top: 10px;
+    display: flex;
+    width: max-content;
+
+    margin: 10px auto 20px auto;
+}
+
+form.coupon_form div.datetime div select{
+    position: relative;
+    top: -10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+form.coupon_form button[type=submit]{
+    color: #fff;
+    background-color: #0062CCFF;
+    text-decoration-color: currentcolor;
+
+    margin-top: 30px;
+
+    padding: 10px;
+
+    font-size: 20px;
+
+    border-radius: 15px;
+    border: none;
+
+    cursor: pointer;
+
+    transition: all .3s;
+}
+
+form.coupon_form button[type=submit]:hover{
+    background-color: rgb(0, 43, 174);
+}

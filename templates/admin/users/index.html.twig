@@ -1,20 +1,73 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UsersController!{% endblock %}
+{% block title %} Coder clothes {% endblock %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <section>
+        {% include "admin/navAdmin.html.twig" %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <main>
+            <h1>Liste des utilisateurs : </h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/jerem/PhpstormProjects/SymfonyEquipe3/src/Controller/Admin/UsersController.php'|file_link(0) }}">src/Controller/Admin/UsersController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/jerem/PhpstormProjects/SymfonyEquipe3/templates/admin/users/index.html.twig'|file_link(0) }}">templates/admin/users/index.html.twig</a></code></li>
-    </ul>
-</div>
+            <table>
+
+                <tr class="col">
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Adresse</th>
+                    <th>Code postal</th>
+                    <th>Ville</th>
+                    <th>Est Vérifier</th>
+                    <th>Date de création</th>
+                    <th>Action</th>
+                </tr>
+
+                {% for user in users %}
+                    <tr class="row">
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.email }}</td>
+                        <td class="roles">
+                            {% for role in user.roles %}
+                                {% if role == "ROLE_ADMIN" %}
+                                    {% set name = "Administrateur" %}
+                                    {% set color = "rouge" %}
+                                {% elseif role == "ROLE_PRODUCT_ADMIN" %}
+                                    {% set name = "Admin produits" %}
+                                    {% set color = "orange" %}
+                                {% else %}
+                                    {% set name = "Membre" %}
+                                    {% set color = "vert" %}
+                                {% endif %}
+                            <span class="role {{ color }}">{{ name }}</span>
+                            {% endfor %}
+
+                        </td>
+                        <td>{{ user.lastname }}</td>
+                        <td>{{ user.firstname }}</td>
+                        <td>{{ user.address }}</td>
+                        <td>{{ user.zipcode }}</td>
+                        <td>{{ user.city }}</td>
+                        <td>
+                            {% if user.getIsVerified() %}
+                                <input type="checkbox" id="myCheckbox" disabled checked>
+                                <label for="myCheckbox"></label>
+
+                            {% else %}
+                                <input type="checkbox" id="myCheckbox" disabled>
+                                <label for="myCheckbox"></label>
+
+                            {% endif %}
+                        </td>
+                        <td>{{ user.getCreatedAt().format('d/m/y H:i:s') }}</td>
+                        <td></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </main>
+    </section>
 {% endblock %}

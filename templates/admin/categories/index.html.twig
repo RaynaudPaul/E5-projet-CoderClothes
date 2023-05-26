@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Coder clothes {% endblock %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">{% endblock %}
+
+{% block body %}
+<section>
+    {% include "admin/navAdmin.html.twig" %}
+
+    <main>
+        <h1>Liste des catégories : </h1>
+
+        <table>
+
+            <tr class="col">
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Parent</th>
+                <th>Slug</th>
+                <th>Ordre</th>
+            </tr>
+
+        {% for categorie in categories %}
+            <tr class="row">
+                <td>{{ categorie.id }}</td>
+                <td>{{ categorie.name }}</td>
+                <td>
+                    {% if categorie.parent is not null %}
+                        {{ categorie.parent.name }}
+                    {% endif %}
+                </td>
+                <td>{{ categorie.slug }}</td>
+                <td>{{ categorie.categoryOrder }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+
+    </main>
+
+</section>
+{% endblock %}

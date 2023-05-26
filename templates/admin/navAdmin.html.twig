@@ -1,0 +1,23 @@
+<nav>
+    <a href="{{ path('admin_index') }}"><pre>&lt;Administration /&gt;</pre></a>
+    <ul>
+        <h2>Coupon : </h2>
+
+        <li><a href="{{ path('coupons_index') }}">Liste des coupons</a></li>
+        <li><a href="{{ path('coupons_add') }}">Ajouter un coupon</a></li>
+    </ul>
+    <ul>
+        <h2>Catégories :</h2>
+        <li><a href="{{ path('categories_index') }}">Liste des catégories</a></li>
+        <li><a href="">Ajouter une catégorie</a></li>
+    </ul>
+    <ul>
+        <h2>Produits :</h2>
+        <li><a href="{{ path('app_products_index') }}">Liste des produits</a></li>
+        <li><a href="">Ajouter un produit</a></li>
+    </ul>
+    <ul>
+        <h2>Utilisateurs :</h2>
+        <li><a href="{{ path('app_admin_usersindex') }}">Liste des utilisateurs</a></li>
+    </ul>
+</nav>

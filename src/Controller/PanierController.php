@@ -2,12 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Coupons;
 use App\Entity\Orders;
 use App\Entity\OrdersDetails;
 use App\Entity\Products;
 use App\Entity\Users;
+use App\Repository\CouponsRepository;
 use App\Repository\OrdersRepository;
 use Couchbase\User;
+use DateTime;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -200,7 +204,9 @@ class PanierController extends AbstractController
     }
 
     #[Route('/panier/coupon', name: 'app_panier_coupon')]
-    public function coupon(SessionInterface $session,TokenStorageInterface $tokenStorage,Request $request,EntityManagerInterface $entityManager,OrdersRepository $ordersRepository): Response
+    public function coupon(SessionInterface $session,TokenStorageInterface $tokenStorage,
+                           Request $request,EntityManagerInterface $entityManager,
+                           OrdersRepository $ordersRepository, CouponsRepository $couponsRepository): Response
     {
         $aOrder = array();
         $token = $tokenStorage->getToken();
@@ -238,9 +244,58 @@ class PanierController extends AbstractController
 
         $coupon = $request->get("coupon");
 
-        if($coupon !== null && $coupon === ""){
+        if($coupon === null){
+            $coupon = "";
+        }
+
+
+        if($coupon !== null && $_SERVER['REQUEST_METHOD'] === 'POST'){
             //Vérification du coupon a faire !!!
             // ......
+
+            $unCoupon = $couponsRepository->findOneBy(['code'=>$coupon]);
+
+            //dd($coupon);
+
+            if($coupon === ""){
+                $aOrder->setCoupons(null);
+            }
+            else if($unCoupon === null){
+                $error = true;
+
+                return $this->render('panier/coupon.html.twig',compact('total','error','coupon'));
+            }else{
+                $couponReference = $entityManager->getReference(Coupons::class, $unCoupon->getId());
+
+                $LesOrders = $ordersRepository->findBy(['coupons'=>$couponReference]);
+
+                $orderCount = count($LesOrders);
+
+                //dd($orderCount);
+
+                $now = new DateTime();
+
+
+                /*dump($unCoupon->getValidity());
+                dd($now);*/
+
+                $validity = $unCoupon->getValidity()->getTimestamp(); // Timestamp de la validité du coupon
+                $now = $now->getTimestamp(); // Timestamp de la date et heure actuelles
+
+                /*($validity);
+                dd($now);*/
+
+                if($orderCount < $unCoupon->getMaxUsage() && $validity > $now){
+                    $aOrder->setCoupons($couponReference);
+                }else{
+                    $error = true;
+
+                    return $this->render('panier/coupon.html.twig',compact('total','error','coupon'));
+                }
+
+            }
+
+            //dd($unCoupon);
 
 
             //Enregistrement de la commande
@@ -288,6 +343,8 @@ class PanierController extends AbstractController
 
                 $entityManager->persist($aOrderDetail);
             }
+
+            //dd($aOrder);
 
             //$entityManager->clear($aOrder);
             $entityManager->persist($aOrder);

@@ -19,7 +19,7 @@ class Categories
     private ?string $name = null;
 
     #[ORM\Column(type: 'integer')]
-    private $categoryOrder;
+    private ?int $categoryOrder;
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'categories')]
     private ?self $parent = null;
@@ -30,6 +30,8 @@ class Categories
     #[ORM\OneToMany(mappedBy: 'Categories', targetEntity: Products::class)]
     private Collection $products;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
 
     public function __construct()
     {
@@ -54,13 +56,15 @@ class Categories
         return $this;
     }
 
-    public function getCategoryOrder(): ?int{
-        return $this->categorieOrder;
+    public function getCategoryOrder(): ?int
+    {
+        return $this->categoryOrder;
     }
 
-    public function setCategoryOrder(int $categoryOrder):self
+    public function setCategoryOrder(int $categoryOrder): self
     {
       $this->categoryOrder = $categoryOrder;
+
       return $this;
     }
     public function getParent(): ?self
@@ -131,6 +135,18 @@ class Categories
                 $product->setCategories(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

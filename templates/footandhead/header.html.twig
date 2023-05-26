@@ -37,6 +37,9 @@
 
                 <div class="plusaccount">
                     <span>{{ app.user.lastname }} {{ app.user.firstname }}</span>
+                    {% if is_granted("ROLE_PRODUCT_ADMIN") %}
+                        <a href="{{ path('admin_index') }}">Administration</a>
+                    {% endif %}
                     <a href="{{ path('app_profile_index') }}">Mon compte</a>
                     <a href="{{ path('app_profile_orders') }}">Mes commandes</a>
                     <a href="{{ path('app_logout') }}">Me déconnecter</a>

@@ -16,7 +16,10 @@
 
             <form action="#" method="post">
                 <h3>Ajouter un coupon</h3>
-                <input type="text" name="coupon" placeholder="Laisser vide si aucun">
+                {% if error is defined and error %}
+                    <p class="invalide">Coupon invalide</p>
+                {% endif %}
+                <input type="text" name="coupon" placeholder="Laisser vide si aucun" value="{% if coupon is defined %}{{ coupon }}{% endif %}">
                 <input type="submit" value="Envoyer">
             </form>
 

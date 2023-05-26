@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Coder clothes {% endblock %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">{% endblock %}
+
+{% block body %}
+    <section>
+        {% include "admin/navAdmin.html.twig" %}
+
+        <main>
+            <h1>Liste des coupons : </h1>
+
+            <table>
+
+                <tr class="col">
+                    <th>ID</th>
+                    <th>Coupons Types</th>
+                    <th>Code</th>
+                    <th>Description</th>
+                    <th>Réduction</th>
+                    <th>Maximum utilisation</th>
+                    <th>Date de validité</th>
+                    <th>Est valide</th>
+                    <th>Date de création</th>
+                    <th>Action</th>
+                </tr>
+
+                {% for coupon in coupons %}
+                    <tr class="row">
+                        <td>{{ coupon.id }}</td>
+                        <td>{{ coupon.getCouponsTypes().name }}</td>
+                        <td>{{ coupon.code }}</td>
+                        <td>{{ coupon.description }}</td>
+                        <td>{{ coupon.discount }}</td>
+                        <td>
+                            {% if coupon.getMaxUsage() == 0 %}
+                                Pas de limite
+                            {% else %}
+                                 {{ coupon.getMaxUsage() }}
+                            {% endif %}
+                        </td>
+                        <td>{{ coupon.getValidity().format('d/m/y H:i:s') }}</td>
+                        <td>
+                            {% if coupon.isIsValid() %}
+                                <input type="checkbox" id="myCheckbox" disabled checked>
+                                <label for="myCheckbox"></label>
+
+                            {% else %}
+                                <input type="checkbox" id="myCheckbox" disabled>
+                                <label for="myCheckbox"></label>
+
+                            {% endif %}
+                        </td>
+                        <td>{{ coupon.getCreatedAt().format('d/m/y H:i:s')  }}</td>
+                        <td><a class="rouge" href="{{ path('coupons_remove', {'id' : coupon.id}) }}">Supprimer</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        </main>
+
+    </section>
+{% endblock %}
