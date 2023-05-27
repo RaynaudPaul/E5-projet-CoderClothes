@@ -1,0 +1,129 @@
+h1{
+    margin: 30px 0;
+    font-size: 30px;
+    text-align: center;
+}
+
+section{
+    position: relative;
+}
+
+table{
+    margin-top: 20px;
+    padding: 20px;
+    width: 100%;
+    max-height: calc(100% - 75px);
+}
+
+table td,
+table th{
+    height: 30px;
+
+    text-align: center;
+}
+
+table tr.col{
+    background-color: #007bff;
+    color: #fff;
+}
+
+.detail{
+    padding: 5px;
+}
+
+.detail ul{
+    list-style: none;
+}
+
+.detail li{
+    margin: 5px 0;
+}
+
+.userInfo{
+    width: max-content;
+    margin: auto;
+}
+
+.btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: bold;
+
+    transition: all .3s;
+}
+
+.btn:hover{
+    background-color: #0368d5;
+}
+
+form.users_form
+{
+    width: 750px;
+    margin: 100px auto;
+    text-align: center;
+    align-items: center;
+    padding: 45px;
+    border: 2px solid #007cff;
+    border-radius: 50px;
+    font-size: 15px;
+}
+
+form .flex{
+    display: flex;
+    width: max-content;
+    margin: 5px auto 20px auto;
+}
+
+form.coupon_form h2,
+form.users_form h2
+{
+    text-align: center;
+    width: max-content;
+    margin: 0 auto 20px auto;
+    font-size: 30px;
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+    padding: 5px;
+}
+
+form.users_form h3{
+    margin: 30px 0 0 0;
+}
+
+form.users_form select{
+    color: #fff;
+    background-color: #0062CCFF;
+    text-align: center;
+}
+
+form input,
+form select,
+form textarea
+{
+    display: block;
+    height: 25px;
+    border: 1px solid #0003;
+
+    border-radius: 5px;
+
+    margin: 5px auto;
+}
+
+form.users_form input{
+    margin: 2px 15px;
+}
+
+form input[type=email]{
+    width: 250px;
+}
+
+form input{
+    text-align: center;
+}

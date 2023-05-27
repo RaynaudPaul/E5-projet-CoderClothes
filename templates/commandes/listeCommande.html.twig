@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Coder clothes {% endblock %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/commandes.css') }}">{% endblock %}
+
+{% block body %}
+<section>
+    <h1>Liste des commandes : </h1>
+
+
+    <table>
+        <thead>
+        <tr class="col">
+            <th>Id</th>
+            <th>Référence</th>
+            <th>Date de création</th>
+            <th>Code du coupon</th>
+            <th>Utilisateur</th>
+            <th>Détails de commande</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.reference }}</td>
+                <td>{{ order.getCreatedAt().format('d/m/y H:i:s') }}</td>
+                <td>
+                    {% if order.coupons.getCode() is defined and order.coupons.getCode() is not empty %}
+                        {{ order.coupons.getCode() }} (-{{ order.coupons.discount }}%)
+                    {% else %}
+                        Aucun code
+                    {% endif %}
+                </td>
+                <td><a href="{{ path('commandes_userInfo',{'id' : order.users.id}) }}">{{ order.users.lastname }} {{ order.users.firstname }}</a></td>
+                <td class="detail">
+                    <ul>
+                        {% set total = 0 %}
+
+
+                        {% for orderDetail in order.ordersDetails %}
+                            <li>{{ orderDetail.products.name }} ({{ orderDetail.products.price }}€) x {{ orderDetail.quantity }}</li>
+
+                            {% set total = total + orderDetail.quantity*orderDetail.price %}
+                        {% endfor %}
+
+                    </ul>
+                </td>
+                <td>{{ total }} €</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+
+</section>
+{% endblock %}

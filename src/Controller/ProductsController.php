@@ -42,7 +42,9 @@ class ProductsController extends AbstractController
         }
 
         if (!$session->has('order')) {
-            return $this->redirectToRoute('app_panier');
+            $aOrder->setUsers($user);
+
+            $session->set('order',$aOrder);
         }else{
             $aOrder = $session->get('order');
             //dd($aOrder);

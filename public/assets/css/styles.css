@@ -43,6 +43,12 @@
     box-shadow: 0 0 15px #0003;
 }
 
+@media (max-width: 1635px){
+    .header,footer{
+        padding: 30px 5%;
+    }
+}
+
 .logo{
     display: -webkit-box;
     display: -ms-flexbox;

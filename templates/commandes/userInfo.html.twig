@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Coder clothes {% endblock %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/commandes.css') }}">{% endblock %}
+
+{% block body %}
+    <section class="userInfo">
+
+        <a href="{{ path('commandes_index') }}" class="btn btn-back">Retour</a>
+
+        {{ form_start(profileForm, {'attr': {'class': 'users_form'}}) }}
+
+        <h1>Information de l'utilisateur</h1>
+
+        <h3>Identité</h3>
+        <div class="flex">
+            {{ form_row(profileForm.lastname) }}
+            {{ form_row(profileForm.firstname) }}
+            {{ form_row(profileForm.email) }}
+        </div>
+
+        <h3>Coordonnée</h3>
+        <div class="flex">
+            {{ form_row(profileForm.address) }}
+            {{ form_row(profileForm.zipcode) }}
+            {{ form_row(profileForm.city) }}
+        </div>
+
+        {{ form_end(profileForm) }}
+    </section>
+
+{% endblock %}
