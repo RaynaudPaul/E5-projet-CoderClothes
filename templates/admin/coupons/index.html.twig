@@ -43,17 +43,21 @@
                         <td>{{ coupon.getValidity().format('d/m/y H:i:s') }}</td>
                         <td>
                             {% if coupon.isIsValid() %}
-                                <input type="checkbox" id="myCheckbox" disabled checked>
+                                <input type="checkbox" class="verified" disabled checked>
                                 <label for="myCheckbox"></label>
 
                             {% else %}
-                                <input type="checkbox" id="myCheckbox" disabled>
+                                <input type="checkbox" class="verified" disabled>
                                 <label for="myCheckbox"></label>
 
                             {% endif %}
                         </td>
                         <td>{{ coupon.getCreatedAt().format('d/m/y H:i:s')  }}</td>
-                        <td><a class="rouge" href="{{ path('coupons_remove', {'id' : coupon.id}) }}">Supprimer</a></td>
+                        <td>
+                            <a class="rouge" href="{{ path('coupons_remove', {'id' : coupon.id}) }}">
+                                Supprimer
+                            </a>
+                        </td>
                     </tr>
                 {% endfor %}
             </table>

@@ -117,24 +117,31 @@ table .row a{
     color: #fff;
 }
 
-table .role.rouge{
+table .role.rouge,
+table .row a.rouge,
+.users_checkbox input[type="checkbox"]:checked + label.rouge
+{
     background-color: #dc3545;
 }
 
 
-table .role.orange{
+table .role.orange,
+table .row a.orange,
+.users_checkbox input[type="checkbox"]:checked + label.orange
+{
     background-color: #ff8300;
 }
 
-table .role.vert{
+table .role.vert,
+table .row a.vert,
+.users_checkbox input[type="checkbox"]:checked + label.vert
+{
     background-color: #7bd054;
 }
 
-table .row a.rouge{
-    background-color: #ff0000;
-}
 
-input[type="checkbox"] {
+input[type="checkbox"].verified,
+.users_checkbox input[type="checkbox"]{
     display: none;
 }
 
@@ -146,6 +153,16 @@ input[type="checkbox"] + label {
     cursor: pointer;
     border-radius: 8px;
     border: none;
+    user-select: none;
+}
+
+.users_checkbox input[type="checkbox"] +label{
+    background: #000;
+    color: #fff;
+    margin: 5px;
+    height: 35px;
+    width: max-content !important;
+    padding: 10px;
 }
 
 input[type="checkbox"]:checked + label {
@@ -157,7 +174,9 @@ input[type="checkbox"]:disabled + label {
     cursor: not-allowed;
 }
 
-form.coupon_form{
+form.coupon_form,
+form.users_form
+{
     width: 750px;
     margin: 100px auto;
     text-align: center;
@@ -168,7 +187,15 @@ form.coupon_form{
     font-size: 15px;
 }
 
-form.coupon_form h2{
+form .flex{
+    display: flex;
+    width: max-content;
+    margin: 5px auto 20px auto;
+}
+
+form.coupon_form h2,
+form.users_form h2
+{
     text-align: center;
     width: max-content;
     margin: 0 auto 20px auto;
@@ -178,9 +205,20 @@ form.coupon_form h2{
     padding: 5px;
 }
 
-form.coupon_form input,
-form.coupon_form select,
-form.coupon_form textarea{
+form.users_form h3{
+    margin: 30px 0 0 0;
+}
+
+form.users_form select{
+    color: #fff;
+    background-color: #0062CCFF;
+    text-align: center;
+}
+
+form input,
+form select,
+form textarea
+{
     display: block;
     height: 25px;
     border: 1px solid #0003;
@@ -190,7 +228,15 @@ form.coupon_form textarea{
     margin: 5px auto;
 }
 
-form.coupon_form input{
+form.users_form input{
+    margin: 2px 15px;
+}
+
+form input[type=email]{
+    width: 250px;
+}
+
+form input{
     text-align: center;
 }
 
@@ -215,12 +261,12 @@ form.coupon_form div.datetime div select{
     margin-right: 10px;
 }
 
-form.coupon_form button[type=submit]{
+form button[type=submit]{
     color: #fff;
     background-color: #0062CCFF;
     text-decoration-color: currentcolor;
 
-    margin-top: 30px;
+    margin-top: 10px;
 
     padding: 10px;
 
@@ -234,6 +280,6 @@ form.coupon_form button[type=submit]{
     transition: all .3s;
 }
 
-form.coupon_form button[type=submit]:hover{
+form button[type=submit]:hover{
     background-color: rgb(0, 43, 174);
 }

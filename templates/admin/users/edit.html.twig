@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Coder clothes {% endblock %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">{% endblock %}
+
+{% block body %}
+<section>
+    {% include "admin/navAdmin.html.twig" %}
+
+    <main>
+
+        {{ form_start(profileForm, {'attr': {'class': 'users_form'}}) }}
+        <h2>Modifier un utilisateur : </h2>
+
+
+        <div style="display: none">{% set test = form_row(profileForm.roles) %}</div>
+
+        <h3>Identité</h3>
+        <div class="flex">
+            {{ form_row(profileForm.lastname) }}
+            {{ form_row(profileForm.firstname) }}
+            {{ form_row(profileForm.email) }}
+        </div>
+
+
+        <h3>Role</h3>
+        <div id="profile_form_roles" class="flex users_checkbox">
+            {% for choice in profileForm.roles.vars.choices %}
+                {% set checkboxId = profileForm.roles.vars.id ~ '_' ~ loop.index0 %}
+
+                {% if choice.value == "ROLE_ADMIN" %}
+                    {% set color = "rouge" %}
+                {% elseif choice.value == "ROLE_PRODUCT_ADMIN" %}
+                    {% set color = "orange" %}
+                {% else %}
+                    {% set color = "vert" %}
+                {% endif %}
+
+                <input type="checkbox" id="{{ checkboxId }}" name="{{ profileForm.roles.vars.full_name }}[]"
+                       value="{{ choice.value }}" {% if choice.data in profileForm.roles.vars.value %}checked="checked"{% endif %}>
+                <label for="{{ checkboxId }}" class="{{ color }}">{{ choice.label }}</label>
+            {% endfor %}
+        </div>
+
+
+
+        <h3>Coordonnée</h3>
+        <div class="flex">
+            {{ form_row(profileForm.address) }}
+            {{ form_row(profileForm.zipcode) }}
+            {{ form_row(profileForm.city) }}
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg my-3">Modifier</button>
+        {{ form_end(profileForm) }}
+
+
+    </main>
+</section>
+{% endblock %}

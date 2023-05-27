@@ -54,17 +54,24 @@
                         <td>{{ user.city }}</td>
                         <td>
                             {% if user.getIsVerified() %}
-                                <input type="checkbox" id="myCheckbox" disabled checked>
+                                <input type="checkbox" class="verified" disabled checked>
                                 <label for="myCheckbox"></label>
 
                             {% else %}
-                                <input type="checkbox" id="myCheckbox" disabled>
+                                <input type="checkbox" class="verified" disabled>
                                 <label for="myCheckbox"></label>
 
                             {% endif %}
                         </td>
                         <td>{{ user.getCreatedAt().format('d/m/y H:i:s') }}</td>
-                        <td></td>
+                        <td>
+                            <a class="orange" href="{{ path('app_admin_users_edit', {'id' : user.id}) }}">
+                                Modifier
+                            </a>
+                            <a class="rouge" href="{{ path('app_admin_users_delete', {'id' : user.id}) }}">
+                                Supprimer
+                            </a>
+                        </td>
                     </tr>
                 {% endfor %}
             </table>
