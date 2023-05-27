@@ -9,6 +9,11 @@
     {% include "admin/navAdmin.html.twig" %}
 
     <main>
+
+        {% if error is defined %}
+            <span class="categorie-error">{{ error }}</span>
+        {% endif %}
+
         <h1>Liste des catégories : </h1>
 
         <table>
@@ -19,6 +24,7 @@
                 <th>Parent</th>
                 <th>Slug</th>
                 <th>Ordre</th>
+                <th>Action</th>
             </tr>
 
         {% for categorie in categories %}
@@ -32,6 +38,11 @@
                 </td>
                 <td>{{ categorie.slug }}</td>
                 <td>{{ categorie.categoryOrder }}</td>
+                <td>
+                    <a class="rouge" href="{{ path('categories_remove', {'id' : categorie.id}) }}">
+                        Supprimer
+                    </a>
+                </td>
             </tr>
         {% endfor %}
         </table>
