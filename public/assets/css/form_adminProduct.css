@@ -4,7 +4,7 @@ form.add_produit{
     font-size: 20px;
     text-align: center;
     padding: 30px;
-    border: 5px solid #007bff;
+    border: 2px solid #007bff;
     border-radius: 50px;
 }
 
@@ -31,6 +31,8 @@ form.add_produit>div textarea{
     min-height: 70px;
 
     text-align: left;
+
+    margin: auto;
 }
 
 form.add_produit>div input{

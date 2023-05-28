@@ -3,6 +3,50 @@
 
 {% block title %}Liste des produits{% endblock %}
 
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">{% endblock %}
+
+
 {% block body %}
-   <h1>Administration des utilisateurs</h1>
+   <section>
+      {% include "admin/navAdmin.html.twig" %}
+
+      <main>
+         <h1>Liste des produits : </h1>
+
+         <table>
+
+            <tr class="col">
+               <th>ID</th>
+               <th>Nom</th>
+               <th class="Pdescrip">Description</th>
+               <th>Image</th>
+               <th>Catégorie</th>
+               <th>Prix</th>
+               <th>Unités en stock</th>
+               <th>Date de création</th>
+               <th>Action</th>
+            </tr>
+
+            {% for product in products %}
+               <tr class="row">
+                  <td>{{ product.id }}</td>
+                  <td>{{ product.name }}</td>
+                  <td class="Pdescrip">{{ product.description }}</td>
+                  <td><img src="{{ asset('assets/images/products/mini/')}}300-300-{{ product.images[0].name }}" alt=""></td>
+                  <td>{{ product.Categories.name }}</td>
+                  <td>{{ product.price/100 }}</td>
+                  <td>{{ product.stock }}</td>
+                  <td>{{ product.getCreatedAt().format('d/m/y H:i:s') }}</td>
+                  <td>
+                     <a class="orange" href="{{ path('app_admin_products_edit', {'id' : product.id }) }}">
+                        Modifier
+                     </a>
+                     <a class="rouge" href="{{ path('app_admin_products_delete', {'id' : product.id}) }}">
+                        Supprimer
+                     </a></td>
+               </tr>
+            {% endfor %}
+         </table>
+      </main>
+   </section>
 {% endblock %}

@@ -33,13 +33,13 @@
                     {% for aProduct in products %}
                         <div class="aProduct">
                             <a href="{{ path('app_products_détails', {"slug" : aProduct.products.slug}) }}" class="name url">{{ aProduct.products.name }}</a>
-                            <span>{{ aProduct.price }} €</span>
+                            <span>{{ aProduct.price/100 }} €</span>
                             <span>{{ aProduct.quantity }}</span>
-                            <span>{{ aProduct.quantity*aProduct.price }} €</span>
+                            <span>{{ aProduct.quantity*aProduct.price/100 }} €</span>
                             <a class="remove" href="{{ path('app_panier_remove', {'slug' : aProduct.products.getSlug()}) }}">Supprimer</a>
                         </div>
 
-                        {% set total = total + aProduct.quantity*aProduct.price %}
+                        {% set total = total + aProduct.quantity*aProduct.price/100 %}
 
                     {% endfor %}
 

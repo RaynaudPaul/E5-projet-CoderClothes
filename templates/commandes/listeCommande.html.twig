@@ -39,11 +39,10 @@
                     <ul>
                         {% set total = 0 %}
 
-
                         {% for orderDetail in order.ordersDetails %}
-                            <li>{{ orderDetail.products.name }} ({{ orderDetail.products.price }}€) x {{ orderDetail.quantity }}</li>
+                            <li>{{ orderDetail.products.name }} ({{ orderDetail.products.price/100 }}€) x {{ orderDetail.quantity }}</li>
 
-                            {% set total = total + orderDetail.quantity*orderDetail.price %}
+                            {% set total = total + orderDetail.quantity*orderDetail.price/100 %}
                         {% endfor %}
 
                     </ul>

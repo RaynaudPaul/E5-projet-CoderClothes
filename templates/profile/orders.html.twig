@@ -28,7 +28,7 @@
 
                     {% for aProduct in aorder.ordersDetails %}
 
-                        {% set total = total + aProduct.quantity*aProduct.price %}
+                        {% set total = total + aProduct.quantity*aProduct.price/100 %}
 
                     {% endfor %}
 

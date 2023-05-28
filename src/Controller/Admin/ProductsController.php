@@ -6,6 +6,7 @@ use App\Entity\Images;
 use App\Entity\Products;
 use App\Form\ProductsFormType;
 use App\Repository\ImagesRepository;
+use App\Repository\ProductsRepository;
 use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -21,9 +22,17 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class ProductsController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(): Response
+    public function index(ProductsRepository $productsRepository,ImagesRepository $imagesRepository): Response
     {
-        return $this->render('admin/products/index.html.twig');
+        $products = $productsRepository->findBy([],['id' => 'asc']);
+
+        foreach ( $products as $product) {
+            $image = $imagesRepository->findBy(['products'=>$product]);
+
+            $product->addImage($image[0]);
+        }
+
+        return $this->render('admin/products/index.html.twig',compact('products'));
     }
 
     #[Route('/ajout', name: 'add')]
@@ -138,7 +147,8 @@ class ProductsController extends AbstractController
     }
 
     #[Route('/suppression/{id}', name: 'delete')]
-    public function delete(Products $product,EntityManagerInterface $entityManager,ImagesRepository $imagesRepository): Response
+    public function delete(Products $product,EntityManagerInterface $entityManager,ImagesRepository $imagesRepository,
+                           ProductsRepository $productsRepository,PictureService $pictureService): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', $product);
 
@@ -148,13 +158,23 @@ class ProductsController extends AbstractController
 
         foreach ($Images as $image) {
             $product->addImage($image);
+
+            $pictureService->delete($image->getName(), 'products', 300, 300);
         }
 
         $entityManager->remove($product);
 
         $entityManager->flush();
 
-        return $this->render('admin/products/index.html.twig');
+        $products = $productsRepository->findBy([],['id' => 'asc']);
+
+        foreach ( $products as $aProduct) {
+            $image = $imagesRepository->findBy(['products'=>$product]);
+
+            $aProduct->addImage($image[0]);
+        }
+
+        return $this->render('admin/products/index.html.twig',compact('products'));
     }
 
 

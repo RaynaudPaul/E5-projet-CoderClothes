@@ -6,6 +6,7 @@ use App\Entity\Orders;
 use App\Entity\OrdersDetails;
 use App\Entity\Products;
 use App\Entity\Users;
+use App\Repository\ImagesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -18,17 +19,20 @@ class ProductsController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(): Response
     {
-        return $this->render('products/index.html.twig', []);
+        return $this->redirectToRoute('app_vetements');
     }
 
     #[Route('/{slug}', name: 'détails')]
-    public function détails(SessionInterface $session,TokenStorageInterface $tokenStorage,Products $product): Response
+    public function détails(SessionInterface $session,TokenStorageInterface $tokenStorage,Products $product,ImagesRepository $imagesRepository): Response
     {
         $aOrder = new Orders();
         $products = array();
         $aOrderDetail = new OrdersDetails();
         $alreadyadded = false;
 
+        $image = $imagesRepository->findBy(['products'=>$product]);
+
+        $product->addImage($image[0]);
 
         $token = $tokenStorage->getToken();
 

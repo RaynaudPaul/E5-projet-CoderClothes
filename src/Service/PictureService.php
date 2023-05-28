@@ -81,7 +81,7 @@ namespace App\Service {
                 $success = false;
                 $path = $this->params->get('images_directory') . $folder;
 
-                $mini = $path . '/mini/' . $width . 'x' . $height . '-' . $fichier;
+                $mini = $path . '/mini/' . $width . '-' . $height . '-' . $fichier;
 
                 if (file_exists($mini)){
                     unlink($mini);

@@ -1,0 +1,101 @@
+.Diapo,
+.Diapo .control,
+.Diapo .medias {
+    width: var(--with);
+    height: var(--height);
+}
+
+.Diapo {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    border-radius: 15px;
+    margin: 100px auto;
+
+    border: 1px solid #aaa;
+}
+
+.Diapo .medias {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    text-align: center;
+    width: auto;
+    overflow: hidden;
+}
+
+.Diapo .medias .media {
+    min-width: 100%;
+    max-width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.Diapo .medias .media img {
+    position: relative;
+    z-index: 2;
+    /*flex: 1 0 100%;*/
+    margin: auto;
+    max-width: 100%;
+    top: 50%;
+    transform: translate(0, -50%);
+    max-height: 100%;
+}
+
+.Diapo .control {
+    position: absolute;
+    z-index: 99;
+}
+
+.Diapo .control button {
+    position: absolute;
+    height: 50px;
+    width: 20px;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    background: #007bff;
+    color: #fff;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: all .3s;
+    font-size: 1em;
+}
+
+.Diapo .control button:hover {
+    background-color: #0036d9;
+    width: 60px;
+    height: 60px;
+    font-size: 1.65em;
+}
+
+.Diapo .control button#gauche::before {
+    content: "\f053";
+}
+
+.Diapo .control button#droite {
+    left: auto;
+    right: 5px;
+}
+
+.Diapo .control button#droite::before {
+    content: "\f054";
+}
+
+.Diapo .control span {
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 50px;
+    height: 30px;
+    border-radius: 30px;
+    background: #007bff;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    padding: 3px;
+}

@@ -1,11 +1,20 @@
 
 {% extends "base.html.twig" %}
 
-{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/form_adminProduct.css') }}">{% endblock %}
+{% block stylesheets %}
+   <link rel="stylesheet" href="{{ asset('assets/css/form_adminProduct.css') }}">
+   <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
+{% endblock %}
 
 
-{% block title %}Liste des produits{% endblock %}
+{% block title %}Ajouter un produit{% endblock %}
 
 {% block body %}
-   {% include "admin/products/_form.html.twig" %}
+   <section>
+      {% include "admin/navAdmin.html.twig" %}
+
+      <main>
+         {% include "admin/products/_form.html.twig" %}
+      </main>
+   </section>
 {% endblock %}

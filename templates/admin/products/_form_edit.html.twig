@@ -1,21 +1,26 @@
 
 {{ form_start(productForm, { 'attr' : { 'class': 'add_produit' } }) }}
-<h1>Modifier un produit</h1>
+<h2>Modifier un produit</h2>
 {{ form_row(productForm.name) }}
 {{ form_row(productForm.description) }}
 {{ form_row(productForm.Categories) }}
 
 
-<h2>Images</h2>
-{% for image in product.images %}
-    <div>
-        <img src="{{ asset('/assets/images/products/mini/300-300-' ~
-        image.name ) }}" alt="Image" width="150" style="margin: auto">
-        <a href="{{ path('app_admin_products_delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token ('delete' ~
-        image.id) }}">Supprimer</a>
-    </div>
-{% endfor %}
+<h3>Images</h3>
+<div class="flex">
+    {% for image in product.images %}
+        <div class="flex_portrait">
+            <img src="{{ asset('/assets/images/products/mini/300-300-' ~
+            image.name ) }}" alt="Image" width="150" style="margin: auto">
+            <a href="{{ path('app_admin_products_delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token ('delete' ~
+            image.id) }}">Supprimer</a>
+        </div>
+    {% endfor %}
+</div>
+
 {{ form_row(productForm.images) }}
+
+
 
 
 {{ form_row(productForm.price) }}

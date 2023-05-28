@@ -193,13 +193,19 @@ form.categories_form
 
 form .flex{
     display: flex;
-    width: max-content;
-    margin: 5px auto 20px auto;
+    width: max-content !important;
+    margin: 5px auto 20px auto !important;
+}
+
+form .flex_portrait{
+    display: flex;
+    flex-direction: column;
 }
 
 form.coupon_form h2,
 form.users_form h2,
-form.categories_form h2
+form.categories_form h2,
+form.add_produit h2
 {
     text-align: center;
     width: max-content;
@@ -298,4 +304,16 @@ form button[type=submit]:hover{
     background-color: #dc3545;
     padding: 15px;
     border-radius: 10px;
+}
+
+
+.Pdescrip{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 200px;
+}
+
+td img{
+    height: 100px;
 }

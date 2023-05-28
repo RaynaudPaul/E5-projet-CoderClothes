@@ -1,7 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Détail produit : {{ product.name }}{% endblock %}
-{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/detail.css') }}">{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/detail.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/diapo.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/diapo.js') }}"></script>
+    <link rel="stylesheet"
+          href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+          defer>
+{% endblock %}
 
 {% block body %}
  <section style="min-height: calc(100vh - 300px)">
@@ -53,12 +63,24 @@
      </div>
      <div class="flex">
          <div class="gauche">
-             <img src="/assets/images/TSPHP.png">
+             <div class="Diapo" style="--with:750px; --height:550px">
+                 <div class="medias">
+                     {% for image in product.images %}
+                         <div class="media"><img src="{{ asset('assets/images/products/')}}{{ image.name }}" alt=""></div>
+                     {% endfor %}
+                 </div>
+                 <div class="control">
+                     <button class="las" id="gauche"></button>
+                     <button class="las" id="droite"></button>
+                     <span class="avancement">...</span>
+                 </div>
+             </div>
+
          </div>
          <div class="droite">
              <h1> {{ product.name }}</h1>
              <h2>{{ product.categories.name }}</h2>
-             <h1>{{ product.price }} €</h1>
+             <h1>{{ product.price/100 }} €</h1>
              <input class="quantity" id="quantity" type="number" name="quantity" min="1" value="1">
              {% if alreadyadded %}
                  <a class="ajouter-panier" onclick="sendRequest()" id="btnAdd">Ajouter encore ?</a>
@@ -70,5 +92,12 @@
      <h1>Description</h1>
      <p>{{ product.description }}</p>
  </section>
+
+<script>
+    var Diapos = document.getElementsByClassName('Diapo');
+    for (i = 0; i < Diapos.length; i++) {
+        new Diapofunct(Diapos[i], 5000, i);
+    }
+</script>
 
 {% endblock %}
