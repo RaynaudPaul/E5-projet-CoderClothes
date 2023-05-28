@@ -91,7 +91,7 @@ namespace App\Service {
                 $original = $path . '/' . $fichier;
 
                 if (file_exists($original)){
-                    unlink($mini);
+                    unlink($original);
                     $success = true;
                 }
                 return $success;

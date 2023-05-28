@@ -4,7 +4,22 @@
 {{ form_row(productForm.name) }}
 {{ form_row(productForm.description) }}
 {{ form_row(productForm.Categories) }}
+
+
+<h2>Images</h2>
+{% for image in product.images %}
+    <div>
+        <img src="{{ asset('/assets/images/products/mini/300-300-' ~
+        image.name ) }}" alt="Image" width="150" style="margin: auto">
+        <a href="{{ path('app_admin_products_delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token ('delete' ~
+        image.id) }}">Supprimer</a>
+    </div>
+{% endfor %}
+{{ form_row(productForm.images) }}
+
+
 {{ form_row(productForm.price) }}
 {{ form_row(productForm.stock) }}
+
 <button type="submit">Modifier</button>
 {{ form_end(productForm) }}

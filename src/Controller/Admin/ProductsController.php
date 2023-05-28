@@ -5,10 +5,13 @@ namespace App\Controller\Admin;
 use App\Entity\Images;
 use App\Entity\Products;
 use App\Form\ProductsFormType;
+use App\Repository\ImagesRepository;
 use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 
+use PHPUnit\Util\Json;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,6 +39,9 @@ class ProductsController extends AbstractController
         if ($productForm->isSubmitted() && $productForm->isValid()){
 
             $images = $productForm->get('images')->getData();
+
+            $images = array_reverse($images);
+
             foreach ($images as $image){
                 $folder = 'products';
 
@@ -49,10 +55,12 @@ class ProductsController extends AbstractController
             $slug = $slugger->slug($product->getName());
             $product->setSlug($slug);
 
-            $prix = $product->getPrice() * 100;
-            $product->setPrice($prix);
+            //$prix = $product->getPrice() * 100;
+            //$product->setPrice($prix);
 
             $product->setCreatedAt(New \DateTimeImmutable());
+
+            //dd($product);
 
             $em->persist($product);
             $em->flush();
@@ -68,7 +76,8 @@ class ProductsController extends AbstractController
     }
 
     #[Route('/edition/{id}', name: 'edit')]
-    public function edit(Products $product, Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
+    public function edit(Products $product, Request $request, EntityManagerInterface $em,
+                         SluggerInterface $slugger,ImagesRepository $imagesRepository, PictureService $pictureService): Response
     {
 
         //dd($product);
@@ -77,19 +86,40 @@ class ProductsController extends AbstractController
 
         $product = new Products();*/
 
-        $prix = $product ->getPrice() / 100;
-        $product->setPrice($prix);
+        //$prix = $product ->getPrice() / 100;
+        //$product->setPrice($prix);
+
+        $Images = $imagesRepository->findBy(['products'=>$product]);
+
+        //dd($Images);
+
+        foreach ($Images as $image) {
+            $product->addImage($image);
+        }
+
+        //dd($product);
 
         $productForm = $this->createForm(ProductsFormType::class, $product);
 
         $productForm->handleRequest($request);
 
         if ($productForm->isSubmitted() && $productForm->isValid()){
+
+            $images = $productForm->get('images')->getData();
+            foreach ($images as $image) {
+                $folder = 'products';
+
+                $fichier = $pictureService->add($image, $folder, 300, 300);
+
+                $img = new Images();
+                $img->setName($fichier);
+                $product->addImage($img);
+            }
             $slug = $slugger->slug($product->getName());
             $product->setSlug($slug);
 
-            $prix = $product->getPrice() * 100;
-            $product->setPrice($prix);
+            //$prix = $product->getPrice() * 100;
+            //$product->setPrice($prix);
 
             $product->setCreatedAt(New \DateTimeImmutable());
 
@@ -102,14 +132,52 @@ class ProductsController extends AbstractController
 
         }
         return $this->render('admin/products/edit.html.twig', [
-            'productForm' => $productForm->createView()
+            'productForm' => $productForm->createView(),
+            'product' => $product
         ]);
     }
 
     #[Route('/suppression/{id}', name: 'delete')]
-    public function delete(Products $product): Response
+    public function delete(Products $product,EntityManagerInterface $entityManager,ImagesRepository $imagesRepository): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_DELETE', $product);
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', $product);
+
+        $Images = $imagesRepository->findBy(['products'=>$product]);
+
+        //dd($Images);
+
+        foreach ($Images as $image) {
+            $product->addImage($image);
+        }
+
+        $entityManager->remove($product);
+
+        $entityManager->flush();
+
         return $this->render('admin/products/index.html.twig');
+    }
+
+
+    #[Route('/suppression/image/{id}', name: 'delete_image', methods:
+        ['DELETE'])]
+    public function deleteImage(Images $image, Request $request, EntityManagerInterface $em, PictureService $pictureService): JsonResponse
+    {
+        $data = json_decode($request ->getContent(), true);
+
+        //dd($request);
+
+        if($this ->isCsrfTokenValid('delete' . $image->getId(), $data['_token'])){
+            $nom = $image->getName();
+
+            if ($pictureService->delete($nom, 'products', 300, 300)){
+                $em ->remove($image);
+                $em ->flush();
+
+                return new JsonResponse(['success' => true], 200);
+            }
+            return new JsonResponse(['error' => 'Erreur de suppression'], 400);
+        }
+
+        return new JsonResponse(['error' => 'Token invalide'], 400);
     }
 }
