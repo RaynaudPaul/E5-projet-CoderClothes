@@ -1,0 +1,60 @@
+form.add_produit{
+    width: 550px;
+    margin: 50px auto;
+    font-size: 20px;
+    text-align: center;
+    padding: 30px;
+    border: 5px solid #007bff;
+    border-radius: 50px;
+}
+
+form.add_produit >div{
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+}
+
+
+form.add_produit>div input,
+form.add_produit>div textarea{
+    text-align: center;
+
+    min-height: 25px;
+
+    margin-left: 20px;
+
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
+form.add_produit>div textarea{
+    min-height: 70px;
+
+    text-align: left;
+}
+
+form.add_produit>div input{
+    width: max-content;
+    min-width: 100px;
+    margin: auto;
+}
+
+form.add_produit button[type=submit]{
+    width: 250px;
+    text-decoration: none;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 14px;
+    margin-top: 30px;
+    border-radius: 15px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    opacity: 80%;
+}
+
+form.add_produit button[type=submit]:hover{
+    background-color: #0036d9;
+
+}

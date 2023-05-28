@@ -1,0 +1,10 @@
+
+{{ form_start(productForm, { 'attr' : { 'class': 'add_produit' } }) }}
+<h1>Modifier un produit</h1>
+{{ form_row(productForm.name) }}
+{{ form_row(productForm.description) }}
+{{ form_row(productForm.Categories) }}
+{{ form_row(productForm.price) }}
+{{ form_row(productForm.stock) }}
+<button type="submit">Modifier</button>
+{{ form_end(productForm) }}

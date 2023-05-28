@@ -1,0 +1,11 @@
+
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/form_adminProduct.css') }}">{% endblock %}
+
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block body %}
+   {% include "admin/products/_form.html.twig" %}
+{% endblock %}
