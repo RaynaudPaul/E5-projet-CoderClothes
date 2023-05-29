@@ -2,58 +2,38 @@
 
 {% block title %} Coder clothes {% endblock %}
 
-{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/menuhorizontal.css') }}">{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/menuhorizontal.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/vetements.css') }}">
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
 
+<div class="accueil">
     <h1 style="margin: 50px auto 50px auto;width: max-content;font-size: 25px">Voici quelque un de nos produits : </h1>
 
-    <section class="blabla">
-    <nav class="horizontal-menu">
-            <li>
-                <img src="assets/images/TSPHP.png" alt="Image 1">
-                <h1>TeeShirt Edition <br> PHP</h1>
-            </li>
-
-            <li>
-                <img src="assets/images/TSJS.png" alt="Image 2">
-                <h1>TeeShirt Edition <br> Java Script</h1>
-            </li>
-
-            <li>
-                <img src="assets/images/TSJAVA.png" alt="Image 3">
-                <h1>TeeShirt Edition <br> Java</h1>
-            </li>
-    </nav>
-        <a class="voirplus" href="{{ path('app_vetements') }}#Tee-shirt">Voir tout nos Tee-Shirt</a>
-    </section>
-
-    <section class="blabla" style="margin-top: 100px">
-    <nav class="horizontal-menu">
-            <li>
-                <img src="assets/images/SSPHP.png" alt="Image 1">
-                <h1>SweatShirt Edition <br> PHP</h1>
-            </li>
-
-            <li>
-                <img src="assets/images/SSJS.png" alt="Image 2">
-                <h1>SweatShirt Edition <br> Java Script</h1>
-            </li>
-
-            <li>
-                <img src="assets/images/SSJAVA.png" alt="Image 3">
-                <h1>SweatShirt Edition <br> Java</h1>
-            </li>
-    </nav>
-        <a class="voirplus" href="{{ path('app_vetements') }}#Sweat-shirt">Voir tout nos Tee-Shirt</a>
-    </section>
-    <section class="row">
-    </section>
+    {% for category in categories %}
+        {% if category.getParent() is not null and category.products is not empty %}
+            <section class="blablaproduit container" id="{{ category.name }}" style="margin: 50px auto;">
+                <div>
+                    {% set productsArray = category.products.toArray() %}
+                    {% set randomKeys = range(0, productsArray|length - 1)|shuffle|slice(0, 3) %}
+                    {% for key in randomKeys %}
+                        {% set product = productsArray[key] %}
+                        {% if product.getCategories() == category %}
+                            <article class="card item">
+                                <div class="card-body">
+                                    <h3 id="nom-produit">{{ product.name }}</h3>
+                                    <img src="{{ asset('assets/images/products/mini/')}}300-300-{{ product.images[0].name }}" alt="LOGO">
+                                </div>
+                            </article>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <a class="voirplus" href="{{ path('app_vetements') }}#{{ category.name }}">Voir tout nos {{ category.name }}s</a>
+            </section>
+        {% endif %}
+    {% endfor %}
 </div>
 {% endblock %}

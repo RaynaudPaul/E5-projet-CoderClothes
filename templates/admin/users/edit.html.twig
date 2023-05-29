@@ -33,6 +33,8 @@
                     {% set color = "rouge" %}
                 {% elseif choice.value == "ROLE_PRODUCT_ADMIN" %}
                     {% set color = "orange" %}
+                {% elseif choice.value == "ROLE_ORDER" %}
+                    {% set color = "violet" %}
                 {% else %}
                     {% set color = "vert" %}
                 {% endif %}

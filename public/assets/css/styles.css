@@ -7,6 +7,20 @@
     font-family: Consolas;
 }
 
+.alert-message{
+    width: max-content;
+    margin: 15px auto;
+    color: #fff;
+    background-color: #47afdc;
+    text-align: center;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.alert-message.rouge{
+    background-color: #dc3545;
+}
+
 .blabla{
     width: 750px;
     margin: auto auto auto;

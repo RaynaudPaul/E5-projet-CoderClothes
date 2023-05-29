@@ -14,14 +14,25 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
+/**
+ * Définition de la classe ProfileController, qui étend AbstractController
+ * et gère les routes pour le profil.
+ */
 #[Route('/profil', name: 'app_profile_')]
 class ProfileController extends AbstractController
 {
+    /**
+     * Action pour afficher le profil de l'utilisateur.
+     *
+     * @param Request                   $request                La requête HTTP
+     * @param UsersRepository           $usersRepository        Le dépôt des utilisateurs
+     * @param TokenStorageInterface     $tokenStorage           L'interface de gestionnaire des jetons d'authentification
+     * @param EntityManagerInterface   $entityManager         L'interface de gestionnaire d'entités
+     * @return Response                 La réponse HTTP
+     */
     #[Route('/', name: 'index')]
-    public function index(Request $request,UsersRepository $usersRepository, TokenStorageInterface $tokenStorage,EntityManagerInterface $entityManager): Response
+    public function index(Request $request, UsersRepository $usersRepository, TokenStorageInterface $tokenStorage, EntityManagerInterface $entityManager): Response
     {
-        //$user = $authenticationUtils->getLastUsername();
-
         $token = $tokenStorage->getToken();
 
         // Vérifier si un utilisateur est connecté
@@ -29,25 +40,13 @@ class ProfileController extends AbstractController
             // Récupérer l'objet User
             $user = $token->getUser();
 
-            //dd($user);
-
             $form = $this->createForm(ProfileFormType::class, $user);
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
-                // encode the plain password
-                /*$user->setPassword(
-                    $userPasswordHasher->hashPassword(
-                        $user,
-                        $form->get('plainPassword')->getData()
-                    )
-                );*/
-
                 $entityManager->persist($user);
                 $entityManager->flush();
-                // do anything else you need here, like send an email
-
-
+                // Faire autre chose si nécessaire, comme envoyer un e-mail
             }
 
             return $this->render('profile/index.html.twig', [
@@ -56,24 +55,25 @@ class ProfileController extends AbstractController
             ]);
         }
 
-    return $this->redirectToRoute('app_login');
-
+        return $this->redirectToRoute('app_login');
     }
 
+    /**
+     * Action pour afficher les commandes de l'utilisateur.
+     *
+     * @param TokenStorageInterface     $tokenStorage           L'interface de gestionnaire des jetons d'authentification
+     * @return Response                 La réponse HTTP
+     */
     #[Route('/commandes', name: 'orders')]
     public function orders(TokenStorageInterface $tokenStorage): Response
     {
-
         $token = $tokenStorage->getToken();
 
         // Vérifier si un utilisateur est connecté
         if ($token && $token->getUser()) {
             // Récupérer l'objet User
             $user = $token->getUser();
-
             $orders = $user->getOrders();
-
-            //dd($orders[0]);
 
             return $this->render('profile/orders.html.twig', [
                 'orders' => $orders
@@ -81,43 +81,42 @@ class ProfileController extends AbstractController
         }
 
         return $this->redirectToRoute('app_login');
-
     }
 
+    /**
+     * Action pour afficher les détails d'une commande.
+     *
+     * @param TokenStorageInterface     $tokenStorage           L'interface de gestionnaire des jetons d'authentification
+     * @param OrdersRepository          $ordersRepository       Le dépôt des commandes
+     * @param int                       $orders_id              L'identifiant de la commande
+     * @return Response                 La réponse HTTP
+     */
     #[Route('/commandes/{orders_id}', name: 'orderDetail')]
-    public function orderDetail(TokenStorageInterface $tokenStorage,OrdersRepository $ordersRepository,$orders_id): Response
+    public function orderDetail(TokenStorageInterface $tokenStorage, OrdersRepository $ordersRepository, int $orders_id): Response
     {
         $token = $tokenStorage->getToken();
-
-        $result = $ordersRepository->findBy(['reference'=>$orders_id]);
-
+        $result = $ordersRepository->findBy(['reference' => $orders_id]);
         $products = array();
         $aOrder = array();
-
 
         // Vérifier si un utilisateur est connecté
         if ($token && $token->getUser()) {
             $user = $token->getUser();
 
-            if($result !== array()){
+            if ($result !== array()) {
                 $aOrder = $result[0];
             }
 
-            if (isset($aOrder) && $aOrder != array() && $user === $aOrder->getUsers()){
-
+            if (isset($aOrder) && $aOrder != array() && $user === $aOrder->getUsers()) {
                 $products = $aOrder->getOrdersDetails();
-
-
-                //dd($products);
-            }else{
+            } else {
                 $aOrder = array();
             }
-
-        }else{
+        } else {
             return $this->redirectToRoute('app_login');
         }
 
-        return $this->render('profile/orderDetail.html.twig',
-        compact("products","aOrder"));
+        return $this->render('profile/orderDetail.html.twig', compact("products", "aOrder"));
     }
 }
+

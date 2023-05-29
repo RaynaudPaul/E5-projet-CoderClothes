@@ -17,8 +17,24 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * Définition de la classe RegistrationController, qui étend AbstractController
+ * et gère les routes pour l'inscription.
+ */
 class RegistrationController extends AbstractController
 {
+    /**
+     * Action pour l'inscription d'un utilisateur.
+     *
+     * @param Request                       $request                    La requête HTTP
+     * @param UserPasswordHasherInterface   $userPasswordHasher         L'interface de hachage des mots de passe utilisateur
+     * @param UserAuthenticatorInterface    $userAuthenticator          L'interface d'authentification utilisateur
+     * @param UsersAuthenticator            $authenticator              L'authentificateur utilisateur
+     * @param EntityManagerInterface       $entityManager             L'interface de gestionnaire d'entités
+     * @param SendMailService               $mail                       Le service d'envoi de mails
+     * @param JWTService                    $jwt                        Le service JWT
+     * @return Response                     La réponse HTTP
+     */
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UsersAuthenticator $authenticator, EntityManagerInterface $entityManager, SendMailService $mail, JWTService $jwt): Response
     {
@@ -31,7 +47,6 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
@@ -41,26 +56,20 @@ class RegistrationController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
 
-            // On génère le JWT de l'utilisateur
-            // On crée le Header
+            // Génération du JWT de l'utilisateur
             $header = [
                 'typ' => 'JWT',
                 'alg' => 'HS256'
             ];
 
-            // On crée le Payload
             $payload = [
                 'user_id' => $user->getId()
             ];
 
-            // On génère le token
             $token = $jwt->generate($header, $payload, $this->getParameter('app.jwtsecret'));
 
-
-
-            // On envoie un mail
+            // Envoi d'un e-mail
             $mail->send(
                 'no-reply@monsite.net',
                 $user->getEmail(),
@@ -81,32 +90,56 @@ class RegistrationController extends AbstractController
         ]);
     }
 
+
+    /**
+     * Action pour l'inscription d'un utilisateur.
+     *
+     * @param                               $token                      Récupère le token
+     * @param JWTService                    $jwt                        Le service JWT
+     * @param UsersRepository               $usersRepository            Le dépôt des utilisateurs
+     * @param EntityManagerInterface        $entityManager              L'interface de gestionnaire d'entité
+     * @return Response                     La réponse HTTP
+     */
     #[Route('/verif/{token}', name: 'verify_user')]
-    public function verifyUser($token, JWTService $jwt, UsersRepository $usersRepository, EntityManagerInterface $em): Response
+    public function verifyUser($token, JWTService $jwt,
+                               UsersRepository $usersRepository,
+                               EntityManagerInterface $em): Response
     {
-        //On vérifie si le token est valide, n'a pas expiré et n'a pas été modifié
-        if($jwt->isValid($token) && !$jwt->isExpired($token) && $jwt->check($token, $this->getParameter('app.jwtsecret'))){
-            // On récupère le payload
+        // Vérifier si le token est valide, non expiré et non modifié
+        if ($jwt->isValid($token) && !$jwt->isExpired($token) && $jwt->check($token, $this->getParameter('app.jwtsecret'))) {
+            // Récupérer les informations du token (payload)
             $payload = $jwt->getPayload($token);
 
-            // On récupère le user du token
+            // Récupérer l'utilisateur associé au token
             $user = $usersRepository->find($payload['user_id']);
 
-            //On vérifie que l'utilisateur existe et n'a pas encore activé son compte
-            if($user && !$user->getIsVerified()){
+            // Vérifier si l'utilisateur existe et n'a pas encore activé son compte
+            if ($user && !$user->getIsVerified()) {
                 $user->setIsVerified(true);
                 $em->flush($user);
                 $this->addFlash('success', 'Utilisateur activé');
                 return $this->redirectToRoute('main');
             }
         }
-        // Ici un problème se pose dans le token
+
+        // Le token est invalide ou a expiré
         $this->addFlash('danger', 'Le token est invalide ou a expiré');
         return $this->redirectToRoute('app_login');
     }
 
+
+    /**
+     * Action pour l'inscription d'un utilisateur.
+     *
+     * @param JWTService                    $jwt                        Le service JWT
+     * @param SendMailService               $email                      L'interface de gestionnaire de mail
+     * @param UsersRepository               $usersRepository            Le dépôt des utilisateurs
+     * @return Response                     La réponse HTTP
+     */
     #[Route('/renvoiverif', name: 'resend_verif')]
-    public function resendVerif(JWTService $jwt, SendMailService $mail, UsersRepository $usersRepository): Response
+    public function resendVerif(JWTService $jwt,
+                                SendMailService $mail,
+                                UsersRepository $usersRepository): Response
     {
         $user = $this->getUser();
 

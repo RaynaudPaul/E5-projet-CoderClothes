@@ -125,7 +125,12 @@ table .row a.rouge,
     background-color: #dc3545;
 }
 
-
+table .role.violet,
+table .row a.violet,
+.users_checkbox input[type="checkbox"]:checked + label.violet
+{
+    background-color: #ad35dc;
+}
 table .role.orange,
 table .row a.orange,
 .users_checkbox input[type="checkbox"]:checked + label.orange

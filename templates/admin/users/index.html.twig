@@ -39,6 +39,9 @@
                                 {% elseif role == "ROLE_PRODUCT_ADMIN" %}
                                     {% set name = "Admin produits" %}
                                     {% set color = "orange" %}
+                                {% elseif role == "ROLE_ORDER" %}
+                                    {% set name = "Commandes" %}
+                                    {% set color = "violet" %}
                                 {% else %}
                                     {% set name = "Membre" %}
                                     {% set color = "vert" %}

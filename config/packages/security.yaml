@@ -34,9 +34,10 @@ security:
         # - { path: ^/admin/utilisateurs, roles: ROLE_ADMIN }
         - { path: ^/admin, roles: ROLE_PRODUCT_ADMIN }
         - { path: ^/profil, roles: ROLE_USER }
+        - { path: ^/commandes, roles: ROLE_ORDER}
 
     role_hierarchy:
-        ROLE_PRODUCT_ADMIN: ROLE_USER
+        ROLE_PRODUCT_ADMIN: [ROLE_USER, ROLE_ORDER]
         ROLE_ADMIN: ROLE_PRODUCT_ADMIN
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 

@@ -4,7 +4,7 @@ img {
     height: 150px;
     object-fit: cover;
     border-radius: 15%;
-    margin-bottom: 20%;
+    margin-bottom: 15px;
 }
 
 
@@ -28,7 +28,7 @@ img {
 
 
 .blablaproduit{
-    width: 750px;
+    width: 880px;
     margin: 100px auto;
 
     text-align: center;
@@ -51,8 +51,15 @@ img {
 }
 
 .item {
-    flex: 1 0 33.333%; /* Largeur de chaque élément pour qu'ils occupent 1/3 de la ligne */
-    max-width: 33.333%; /* Limite la largeur pour éviter que les éléments occupent plus d'espace */
+    /*flex: 1 0 33.333%; */
+    /*max-width: 33.333%; */
+    display: inline-block;
+    margin: auto;
+}
+
+.card-body {
+    margin: 5px 0;
+    width: 250px;
 }
 
 .bouttondetail {
